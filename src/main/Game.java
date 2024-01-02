@@ -1,27 +1,43 @@
-package main;
-
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
-public class Game extends JFrame {
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
-  private GamePanel gamePanel;
+public class Game extends JFrame{
+    private GameScreen gameScreen;
+    private BufferedImage img; 
 
+    public Game(){
+        
+        importImg();
+        
+        setSize(640, 640);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        gameScreen = new GameScreen(img);
+        add(gameScreen);
+    }
 
-  public Game() {
-    setVisible(true);
-    setSize(600,600);
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
-    setLocationRelativeTo(null);
+    private void importImg() {
 
-    gamePanel = new GamePanel();
-    add(gamePanel);
-  }
+		InputStream is = getClass().getResourceAsStream("/spriteatlas.png");
 
-  public static void main(String[] args) {
-    System.out.println("Début du jeu");
-    Game towerdefense = new Game();
-    System.out.println("Fin du jeu");
+		try {
+			img = ImageIO.read(is);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-  }
+	}
 
+    public static void main(String[] args){
+        
+        SwingUtilities.invokeLater(() -> {
+            Game game = new Game();
+        });
+    }
 }
