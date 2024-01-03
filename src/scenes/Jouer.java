@@ -18,7 +18,6 @@ public class Jouer extends GameScene implements interfaceScenes {
 
     public Jouer(Game game) {
         super(game);
-        menuButton = new Button("Menu", 2, 2, 100, 30);
         niveau = NiveauConstruction.getNiveauData();
         imageManagement = new ImageManagement();
         bottomBar = new Bar(0,640,640,100,this);
