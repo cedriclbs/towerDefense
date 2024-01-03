@@ -15,7 +15,7 @@ public class GameScreen extends JPanel{
     private KeyboardListener clavier;
     private MyMouseListener souris;
     //private Random random = new Random();
-    private Dimension gameScreenDimension = new Dimension (320*2,320*2);
+    private Dimension gameScreenDimension = new Dimension (320*2,740);
 
 
 
