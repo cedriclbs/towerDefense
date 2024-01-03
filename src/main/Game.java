@@ -50,8 +50,6 @@ public class Game extends JFrame implements Runnable{
             Game game = new Game();
             game.start();
         });
-        
-        
     }
 
     @Override

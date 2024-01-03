@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 import java.awt.image.BufferedImage;
-import java.sql.Time;
 
 public class GameScreen extends JPanel{
     private Random random;
