@@ -8,4 +8,8 @@ public enum States {
 
     public static States states = MENU;
 
+    public static void setStates (States state){
+        states = state;
+    }
+
 }

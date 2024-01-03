@@ -15,8 +15,7 @@ public class Game extends JFrame implements Runnable{
     private final double FPSGame = 120.0;
     private final double UPSGame = 60.0;
 
-    private KeyboardListener clavier;
-    private MyMouseListener souris;
+
     
     private Render render;
     
@@ -67,21 +66,13 @@ public class Game extends JFrame implements Runnable{
     }
 
 
-    private void inputsStart () {
-        souris=new MyMouseListener();
-        addMouseListener(souris);
-        addMouseMotionListener(souris);
-        clavier=new KeyboardListener();
-        addKeyListener(clavier);
-        requestFocus();
-    }
-
+    
 
     public static void main(String[] args){
         
         SwingUtilities.invokeLater(() -> {
             Game game = new Game();
-            game.inputsStart();
+            game.gameScreen.inputsStart();
             game.start();
         });
     }

@@ -1,11 +1,19 @@
 package main;
 
 import javax.swing.JPanel;
+
+import inputs.KeyboardListener;
+import inputs.MyMouseListener;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+   
+
 public class GameScreen extends JPanel{
     private Game game;
+    private KeyboardListener clavier;
+    private MyMouseListener souris;
     //private Random random = new Random();
     private Dimension gameScreenDimension = new Dimension (320*2,320*2);
 
@@ -18,6 +26,16 @@ public class GameScreen extends JPanel{
         setPreferredSize(gameScreenDimension);
         setMaximumSize(gameScreenDimension);
     }
+
+    public void inputsStart () {
+        souris = new MyMouseListener(game);
+        addMouseListener(souris);
+        addMouseMotionListener(souris);
+        clavier=new KeyboardListener();
+        addKeyListener(clavier);
+        requestFocus();
+    }
+
     
     public void paintComponent(Graphics g){
         super.paintComponent(g);

@@ -2,8 +2,15 @@ package scenes;
 
 import java.awt.Graphics;
 
+import org.w3c.dom.events.MouseEvent;
+
 public interface interfaceScenes {
     
+    public void mouseClicked (int x, int y);
+    public void mouseMoved (int x, int y);
+    public void mousePressed(int x, int y);
+    public void mouseReleased(int x, int y);
+
     public void render (Graphics graphics);
 
 }
