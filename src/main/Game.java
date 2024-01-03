@@ -11,8 +11,6 @@ import scenes.Parametres;
 
 public class Game extends JFrame implements Runnable{
     private GameScreen gameScreen;
-    private int Updates;
-    private long LastTimeUPS;
     private Thread gameThread;
     private final double FPSGame = 120.0;
     private final double UPSGame = 60.0;
@@ -32,6 +30,7 @@ public class Game extends JFrame implements Runnable{
         //setSize(320*2, 320*2);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setResizable(false);
         aideConstructeur();
         add(gameScreen);
         pack();
