@@ -9,7 +9,7 @@ public class MyMouseListener implements MouseMotionListener, MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'mouseClicked'");
+        
 
         if (e.getButton()==MouseEvent.BUTTON1){
             System.out.println("left button clicked");
