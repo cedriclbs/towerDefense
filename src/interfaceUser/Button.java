@@ -70,6 +70,14 @@ public class Button {
         this.mouseOnIt = b;
     }
 
+    public boolean getMouseOnIt () {
+        return mouseOnIt;
+    }
+
+    public boolean getMousePressed () {
+        return mousePressed;
+    }
+
     public void setMousePressed (boolean b){
         this.mousePressed = b;
     }

@@ -37,5 +37,9 @@ public class ImageManagement {
         return Atlas.getSubimage(x*32, y*32, 32, 32);
     }
 
+    public Image getImage (int id){
+        return Images.get(id);
+    }
+
     
 }
