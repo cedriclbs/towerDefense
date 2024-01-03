@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import helper.NiveauConstruction;
+import helper.Sauvegarde;
 import interfaceUser.Bar;
 import main.Game;
 import management.ImageManagement;
@@ -29,6 +30,19 @@ public class Jouer extends GameScene implements interfaceScenes {
         niveau = NiveauConstruction.getNiveauData();
         imageManagement = new ImageManagement();
         bottomBar = new Bar(0,640,640,100,this);
+        //Sauvegarde.CreationOfFile();
+        //Sauvegarde.UpdateFile();
+        //Sauvegarde.LectureFile();
+        creationNivParDefault();
+    }
+
+    private void creationNivParDefault() {
+        int[] arr = new int[400];
+        for(int i=0; i<arr.length; i++){
+            arr[i] = 0;
+        }
+
+        Sauvegarde.CreationNiveau("Nouveau niveau", arr);
     }
 
     @Override
