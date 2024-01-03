@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 public class ImageManagement {
 
-    public Image GRASS,WATER,ROAD;
+    public Image HERBE,EAU,ROUTE;
     public BufferedImage Atlas;
     public ArrayList<Image> Images = new ArrayList<>();
     
@@ -18,9 +18,10 @@ public class ImageManagement {
     }
 
     private void CreationDImage() {
-        Images.add(GRASS = new Image(getSprite(8, 1)));
-        Images.add(WATER = new Image(getSprite(0, 6)));
-        Images.add(ROAD = new Image(getSprite(9, 0)));
+        int id =0;
+        Images.add(HERBE = new Image(getSprite(8, 1),id++,"Herbe"));
+        Images.add(EAU = new Image(getSprite(0, 6),id++,"Eau"));
+        Images.add(ROUTE = new Image(getSprite(9, 0),id++,"Route"));
 
     }
 

@@ -7,10 +7,11 @@ import java.awt.Rectangle;
 public class Button {
     
     String buttonName;
-    private int x;
-    private int y;
-    private int width;
-    private int height;
+    public int x;
+    public int y;
+    public int width;
+    public int height;
+    public int id;
     private Rectangle rectangle;
     private boolean mouseOnIt;
     private boolean mousePressed;
@@ -22,6 +23,17 @@ public class Button {
         this.y=y;
         this.width=width;
         this.height=height;
+        this.rectangle = new Rectangle(x,y,width,height);
+        this.id = -4;
+    }
+
+    public Button (String buttonName, int x, int y, int width, int height,int id) {
+        this.buttonName = buttonName;
+        this.x =x;
+        this.y=y;
+        this.width=width;
+        this.height=height;
+        this.id = id;
         this.rectangle = new Rectangle(x,y,width,height);
     }
 
@@ -67,6 +79,9 @@ public class Button {
         this.mousePressed = false;
     }
 
+    public int getId(){
+        return id;
+    }
 
 
 }
