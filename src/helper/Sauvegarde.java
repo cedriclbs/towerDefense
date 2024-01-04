@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
@@ -36,10 +37,10 @@ public class Sauvegarde {
 		}
 	}
 
-	public static void CreationNiveau(String name,int[] idA){
-		File nouveauNiveau = new File("txt/"+name +".txt");
+	public static void CreationNiveau(String nom,int[] idA){
+		File nouveauNiveau = new File("txt/"+nom +".txt");
 		if(nouveauNiveau.exists()){
-			System.out.println("Fichier: "+ name +" existant !");
+			System.out.println("Fichier: "+ nom +" existant !");
 			return;
 		}
 		else {
@@ -65,18 +66,48 @@ public class Sauvegarde {
 		}
 	}
     
-    public static void LectureFile(){
-		File txtFile = new File("txt/Text.txt");
+    private static ArrayList<Integer> LectureFile(File file){
+		ArrayList<Integer> liste = new ArrayList<>();
 		
 		try {
-			Scanner scan = new Scanner(txtFile);
+			Scanner scan = new Scanner(file);
 			while(scan.hasNextLine()){
-				System.out.println(scan.nextLine());
+				liste.add(Integer.parseInt(scan.nextLine()));
 			}
 			scan.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		return liste;
 	}
+
+
+	public static int[][] getNiveau (String nom){
+		File niveauFile = new File ("txt/"+nom+".txt");
+
+		if (niveauFile.exists()){
+			ArrayList<Integer> liste = LectureFile(niveauFile);
+			return Conversion.convertir(liste, 20, 20);
+		} else {
+			System.out.println("Fichier :" + nom + " n'existe pas.");
+			return null;
+		}
+
+	}
+
+
+	public static void SauvNiveau (String nom, int [][]tab){
+		File niveau = new File("txt/"+nom +".txt");
+
+		if (niveau.exists()){
+			UpdateFile(niveau, Conversion.convertir2en1(tab));
+		} else {
+			System.out.println("fichier non existant");
+			return;
+		}
+
+
+	}
+
 
 }

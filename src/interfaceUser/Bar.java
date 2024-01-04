@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 public class Bar {
     
     private int x,y,width,height;
-    private Button menuButton;
+    private Button menuButton, sauvegarderButton;
     private Jouer jouer;
     private ArrayList<Button> imageButton = new ArrayList<> ();
     private Image choosedImage;
@@ -32,6 +32,7 @@ public class Bar {
 
     private void initializeButton(){
         menuButton = new Button("Menu", 2, 642, 100, 30);
+        sauvegarderButton = new Button("Sauvegarder", 2, 672, 100, 30);
 
         int w = 50;
         int h = 50;
@@ -47,6 +48,7 @@ public class Bar {
 
     private void afficheButton(Graphics graphics){
         menuButton.draw(graphics);
+        sauvegarderButton.draw(graphics);
         afficheImageButton(graphics);
         afficheImageChoisies(graphics);
     }
@@ -90,7 +92,10 @@ public class Bar {
 	public void mouseClicked(int x, int y) {
 		if (menuButton.getRectangle().contains(x, y)){ 
 			setStates(MENU);
-        } else {
+        } else if (sauvegarderButton.getRectangle().contains(x,y)){
+            sauvegarderNiveau();
+        }
+        else {
             for (Button button : imageButton){
                 if (button.getRectangle().contains(x,y)){
                     choosedImage = jouer.getImageManagement().getImage(button.getId());
@@ -102,8 +107,13 @@ public class Bar {
 
 	}
 
-	public void mouseMoved(int x, int y) {
+	private void sauvegarderNiveau() {
+        jouer.sauvegarderNiveau();
+    }
+
+    public void mouseMoved(int x, int y) {
 		menuButton.setMouseOnIt(false);
+        sauvegarderButton.setMouseOnIt(false);
         for (Button b : imageButton){
             b.setMouseOnIt(false);
         }
@@ -111,7 +121,11 @@ public class Bar {
 
 		if (menuButton.getRectangle().contains(x, y)){
 			menuButton.setMouseOnIt(true);
-        } else {
+        } 
+        else if (sauvegarderButton.getRectangle().contains(x,y)){
+            sauvegarderButton.setMouseOnIt(true);
+        }
+        else {
             for (Button button : imageButton){
                 if (button.getRectangle().contains(x,y)){
                     button.setMouseOnIt(true);
@@ -125,7 +139,10 @@ public class Bar {
 	public void mousePressed(int x, int y) {
 		if (menuButton.getRectangle().contains(x, y)){
 			menuButton.setMousePressed(true);
-        } else {
+        } else if (sauvegarderButton.getRectangle().contains(x,y)){
+            sauvegarderButton.setMousePressed(true);
+        }
+        else {
             for (Button button : imageButton){
                 if (button.getRectangle().contains(x,y)){
                     button.setMousePressed(true);
@@ -138,6 +155,7 @@ public class Bar {
 
 	public void mouseReleased(int x, int y) {
 		menuButton.resetBooleans();
+        sauvegarderButton.resetBooleans();
         for (Button button : imageButton){
             button.resetBooleans();
         }
