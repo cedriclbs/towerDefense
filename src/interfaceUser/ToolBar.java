@@ -43,7 +43,7 @@ public class ToolBar  extends Bar{
     }
 
     public void affiche(Graphics graphics){
-        graphics.setColor(new Color(220,123,15));
+        graphics.setColor(new Color(55,8,8));
         graphics.fillRect(x, y, width, height);
         afficheButton(graphics);
     }
