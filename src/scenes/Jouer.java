@@ -28,12 +28,18 @@ public class Jouer extends GameScene implements interfaceScenes {
     public Jouer(Game game) {
         super(game);
         niveau = NiveauConstruction.getNiveauData();
+        //System.out.println("Niveau array length: " + niveau.length);
         imageManagement = new ImageManagement();
         bottomBar = new Bar(0,640,640,100,this);
         //Sauvegarde.CreationOfFile();
         //Sauvegarde.UpdateFile();
         //Sauvegarde.LectureFile();
         creationNivParDefault();
+        chargerNivParDefault();
+    }
+
+    private void chargerNivParDefault() {
+        niveau = Sauvegarde.getNiveau("Nouveau_niveau");
     }
 
     private void creationNivParDefault() {
@@ -42,7 +48,7 @@ public class Jouer extends GameScene implements interfaceScenes {
             arr[i] = 0;
         }
 
-        Sauvegarde.CreationNiveau("Nouveau niveau", arr);
+        Sauvegarde.CreationNiveau("Nouveau_niveau", arr);
     }
 
     @Override
@@ -139,6 +145,10 @@ public class Jouer extends GameScene implements interfaceScenes {
 		if(y<640){
             updateImage(x,y);
 	    }
-	}    
+	}
+
+    public void sauvegarderNiveau() {
+        Sauvegarde.SauvNiveau("Nouveau_niveau", niveau);
+    }    
     
 }
