@@ -7,6 +7,7 @@ import object.Image;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import static helper.Constante.Images.*;
 
 public class ImageManagement {
 
@@ -27,9 +28,9 @@ public class ImageManagement {
 
     private void CreationDImage() {
         int id =0;
-        Images.add(HERBE = new Image(getSprite(9, 0),id++,"Herbe"));
-        Images.add(EAU = new Image(getSprite(0, 0),id++,"Eau"));
-        Images.add(ROUTE = new Image(getSprite(8, 0),id++,"Route"));
+        Images.add(HERBE = new Image(getSprite(9, 0),id++,HERBE_IMAGE));
+        Images.add(EAU = new Image(getSprite(0, 0),id++,EAU_IMAGE));
+        Images.add(ROUTE = new Image(getSprite(8, 0),id++,ROUTE_IMAGE));
 
         /*
         Images.add(EAU_COIN_1 = new Image(afficheImage(getImages(0,0,5, 0)),id++,"Eau_COIN_1"));
@@ -53,11 +54,11 @@ public class ImageManagement {
     }
 
 
-    private BufferedImage[] getImages (int x, int y, int xRotate, int yRotate){
-        return new BufferedImage[] {
-            getSprite(x,y), getSprite(xRotate, yRotate)
-        };
-    }
+    // private BufferedImage[] getImages (int x, int y, int xRotate, int yRotate){
+    //     return new BufferedImage[] {
+    //         getSprite(x,y), getSprite(xRotate, yRotate)
+    //     };
+    // }
 
 
 

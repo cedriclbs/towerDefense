@@ -59,6 +59,26 @@ public class Game extends JFrame implements Runnable{
         
     }
 
+    private void UpdateJeu(){
+        switch(States.states){
+            case JOUER:
+            jouer.update();
+            break;
+
+            case MENU:
+            break;
+
+            case PARAMETRES:
+            break;
+            
+            case EDITER:
+                break;
+            default:
+                break;
+        }
+    }
+    
+
     public Render getRender () {
         return this.render;
     }
@@ -119,6 +139,7 @@ public class Game extends JFrame implements Runnable{
                 FPS++;
             }
             if(current - LastUpdate >= TimeUpdate){
+                UpdateJeu();
                 LastUpdate = current;
                 Updates++;
             }
