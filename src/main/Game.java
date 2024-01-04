@@ -3,8 +3,9 @@ package main;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import inputs.KeyboardListener;
-import inputs.MyMouseListener;
+import helper.Sauvegarde;
+import management.ImageManagement;
+import scenes.Edit;
 import scenes.Jouer;
 import scenes.Menu;
 import scenes.Parametres;
@@ -22,6 +23,8 @@ public class Game extends JFrame implements Runnable{
     private Jouer jouer;
     private Menu menu;
     private Parametres parametres;
+    private Edit edit;
+    private ImageManagement imageManagement;
 
     public Game(){
         
@@ -31,19 +34,31 @@ public class Game extends JFrame implements Runnable{
         setLocationRelativeTo(null);
         setResizable(false);
         aideConstructeur();
+        creationNivParDefault();
         add(gameScreen);
         pack();
         setVisible(true);
 
     }
 
+    private void creationNivParDefault() {
+        int[] arr = new int[400];
+        for(int i=0; i<arr.length; i++){
+            arr[i] = 0;
+        }
+
+        Sauvegarde.CreationNiveau("Nouveau_niveau", arr);
+    }
 
     public void aideConstructeur () {
+        imageManagement = new ImageManagement();
         render = new Render(this);
         gameScreen = new GameScreen(this);
         jouer = new Jouer(this);
         menu = new Menu(this);
         parametres = new Parametres(this);
+        edit = new Edit(this);
+        
     }
 
     public Render getRender () {
@@ -57,6 +72,12 @@ public class Game extends JFrame implements Runnable{
     }
     public Parametres getParametres () {
         return this.parametres;
+    }
+    public Edit getEdit(){
+        return edit;
+    }
+    public ImageManagement getImageManagement(){
+        return imageManagement;
     }
     
 

@@ -2,13 +2,7 @@ package scenes;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Random;
-
-import javax.imageio.ImageIO;
 
 import interfaceUser.Button;
 import main.Game;
@@ -17,19 +11,16 @@ import static main.States.*;
 public class Menu extends GameScene implements interfaceScenes {
 
     private Random random;
-    private BufferedImage image;
-    private ArrayList<BufferedImage> sprites = new ArrayList<BufferedImage>();
     private Button jouerButton;
     private Button quitterButton;
     private Button parametresButton;
+    private Button editButton;
 
 
     
     public Menu(Game game) {
         super(game);
         random = new Random();
-        importImg();
-        AfficheSprites();
 
         int widthForText = 150;
 		int heightForText = widthForText / 3;
@@ -38,10 +29,9 @@ public class Menu extends GameScene implements interfaceScenes {
 		int yOffset = 100;
 
         jouerButton = new Button("Jouer", x, y, widthForText, heightForText);
-        quitterButton = new Button("Quitter",x, y + yOffset * 2, widthForText, heightForText);
-        parametresButton = new Button("Paramètres",x, y + yOffset, widthForText, heightForText);
-
-
+        editButton = new Button("Edit", x, y+yOffset,widthForText,heightForText); 
+        parametresButton = new Button("Paramètres",x, y + yOffset*2, widthForText, heightForText);
+        quitterButton = new Button("Quitter",x, y + yOffset * 3, widthForText, heightForText);
     }
 
    
@@ -49,6 +39,7 @@ public class Menu extends GameScene implements interfaceScenes {
     @Override
     public void render(Graphics graphics) {
         jouerButton.draw(graphics);
+        editButton.draw(graphics);
         quitterButton.draw(graphics);
         parametresButton.draw(graphics);
 
@@ -62,30 +53,6 @@ public class Menu extends GameScene implements interfaceScenes {
          */
     }
 
-    
-
-    
-    private void importImg() {
-
-		InputStream is = getClass().getResourceAsStream("/spriteatlas.png");
-
-		try {
-			image = ImageIO.read(is);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
-
-    
-    private void AfficheSprites() {
-        for(int y = 0; y < 10; y++){
-            for(int x = 0; x < 10; x++){
-                sprites.add(image.getSubimage(x*32, y*32, 32, 32));
-                
-            }
-        }
-
-    }
 
     private int getRndInt(){
         return random.nextInt(100);
@@ -104,6 +71,9 @@ public class Menu extends GameScene implements interfaceScenes {
         if(jouerButton.getRectangle().contains(x,y)){
             setStates(JOUER);
         }
+        else if(editButton.getRectangle().contains(x, y)){
+            setStates(EDITER);
+        }
         else if (quitterButton.getRectangle().contains(x,y)){
             System.exit(0);
         } 
@@ -121,6 +91,9 @@ public class Menu extends GameScene implements interfaceScenes {
         if(jouerButton.getRectangle().contains(x,y)){
             jouerButton.setMouseOnIt(true);
         }
+        else if(editButton.getRectangle().contains(x, y)){
+            editButton.setMouseOnIt(true);
+        }
         else if (quitterButton.getRectangle().contains(x,y)){
             quitterButton.setMouseOnIt(true);
         } 
@@ -134,6 +107,9 @@ public class Menu extends GameScene implements interfaceScenes {
     public void mousePressed(int x, int y) {
         if(jouerButton.getRectangle().contains(x,y)){
             jouerButton.setMousePressed(true);
+        }
+        else if(editButton.getRectangle().contains(x, y)){
+            editButton.setMousePressed(true);
         }
         else if(quitterButton.getRectangle().contains(x,y)){
             quitterButton.setMousePressed(true);
@@ -155,6 +131,7 @@ public class Menu extends GameScene implements interfaceScenes {
 
     private void resetButtons() {
         jouerButton.resetBooleans();
+        editButton.resetBooleans();
         quitterButton.resetBooleans();
         parametresButton.resetBooleans();
 
