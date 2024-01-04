@@ -5,19 +5,23 @@ import java.awt.Graphics;
 import helper.Sauvegarde;
 import interfaceUser.ActionBar;
 import main.Game;
+import management.MonsterManagement;
+
 import java.awt.image.BufferedImage;
 
 public class Jouer extends GameScene implements interfaceScenes {
     private int[][] niveau;
     private ActionBar bottomBar;
     private int xMoved, yMoved; 
+    private MonsterManagement monsterManagement;
 
     public Jouer(Game game) {
         super(game);
         chargerNivParDefault();
         bottomBar = new ActionBar(0,640,640,100,this);
-  
+        monsterManagement = new MonsterManagement(this);
     }
+
 
     private void chargerNivParDefault() {
         niveau = Sauvegarde.getNiveau("Nouveau_niveau");
@@ -26,12 +30,16 @@ public class Jouer extends GameScene implements interfaceScenes {
     public void setNiveau(int[][] niveau) {
         this.niveau=niveau;
     }
-
+    
+    public void update(){
+        monsterManagement.update();
+    }
 
     @Override
     public void render(Graphics graphics) {
         ChargerNiveau(graphics);
         bottomBar.affiche(graphics);
+        monsterManagement.affiche(graphics);
     }
 
     private void ChargerNiveau(Graphics graphics) {
@@ -47,11 +55,26 @@ public class Jouer extends GameScene implements interfaceScenes {
         return game.getImageManagement().getSprite(spriteid);
     }
 
+    public int getImageType(int x, int y){
+        int xCord = x / 32;
+		int yCord = y / 32;
+		
+		if(xCord < 0 || xCord > 19)
+			return 0;
+		if(yCord < 0 || yCord > 19)
+			return 0;
+            
+        int id = niveau[y/32][x/32];
+        return game.getImageManagement().getImage(id).getImageType();
+    }
+
 
     @Override
 	public void mouseClicked(int x, int y) {
         if(y>=640){
             bottomBar.mouseClicked(x, y);
+        }else{
+            monsterManagement.AjouterMonstres(x, y);
         }
 	}
 
