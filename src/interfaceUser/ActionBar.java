@@ -8,7 +8,6 @@ import static main.States.*;
 
 public class ActionBar extends Bar{
     
-    private int x,y,width,height;
     private Button menuButton;
     private Jouer jouer;
 
@@ -31,7 +30,6 @@ public class ActionBar extends Bar{
         graphics.setColor(new Color(220,123,15));
         graphics.fillRect(x, y, width, height);
         afficheButton(graphics);
-        
     }
 
 	public void mouseClicked(int x, int y) {

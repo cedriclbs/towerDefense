@@ -49,7 +49,7 @@ public class Edit extends GameScene implements interfaceScenes{
         return game.getImageManagement().getSprite(spriteid);
     }
     private void afficheImageChoisies(Graphics graphics) {
-        if (choosedImage !=null){
+        if (choosedImage !=null && afficheChoosen){
             if (afficheChoosen){
                 graphics.drawImage(choosedImage.getSprite(), xMoved, yMoved, 32, 32, null);
             }
