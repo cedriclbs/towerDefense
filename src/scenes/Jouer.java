@@ -28,6 +28,7 @@ public class Jouer extends GameScene implements interfaceScenes {
     public Jouer(Game game) {
         super(game);
         niveau = NiveauConstruction.getNiveauData();
+        //System.out.println("Niveau array length: " + niveau.length);
         imageManagement = new ImageManagement();
         bottomBar = new Bar(0,640,640,100,this);
         //Sauvegarde.CreationOfFile();

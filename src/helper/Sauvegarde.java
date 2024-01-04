@@ -28,7 +28,7 @@ public class Sauvegarde {
     }
     
 	public static void CreationOfFile(){
-		File txtFile = new File("txt/testTestFile.txt");
+		File txtFile = new File("txt" + File.separator + "testTestFile.txt");
 		
 		try {
 			txtFile.createNewFile();
@@ -38,7 +38,11 @@ public class Sauvegarde {
 	}
 
 	public static void CreationNiveau(String nom,int[] idA){
-		File nouveauNiveau = new File("txt/"+nom +".txt");
+		File directory = new File("txt");
+		if (!directory.exists()) {
+			directory.mkdirs();
+		}
+		File nouveauNiveau = new File(directory, nom + ".txt");
 		if(nouveauNiveau.exists()){
 			System.out.println("Fichier: "+ nom +" existant !");
 			return;
