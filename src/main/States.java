@@ -4,7 +4,9 @@ public enum States {
     
     JOUER, 
     MENU, 
-    PARAMETRES;
+    PARAMETRES,
+    EDITER;
+    
 
     public static States states = MENU;
 

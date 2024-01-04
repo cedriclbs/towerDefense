@@ -27,14 +27,13 @@ public class Render {
             case PARAMETRES:
                 game.getParametres().render(graphics);
             break;
+            
+            case EDITER:
+                game.getEdit().render(graphics);
+                break;
+            default:
+                break;
         }
     }
-
-
-
-
-
-
-
 
 }

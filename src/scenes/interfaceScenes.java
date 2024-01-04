@@ -2,7 +2,7 @@ package scenes;
 
 import java.awt.Graphics;
 
-import org.w3c.dom.events.MouseEvent;
+import java.awt.event.MouseEvent;
 
 public interface interfaceScenes {
     
