@@ -10,10 +10,12 @@ import java.awt.image.BufferedImage;
 
 public class ImageManagement {
 
-    public Image HERBE,EAU,ROUTE,
+    public Image HERBE,EAU,ROUTE;
+    /*
     EAU_COIN_1,EAU_COIN_2,EAU_COIN_3,EAU_COIN_4, EAU_COIN_5,
     ROUTE_1, ROUTE_2, ROUTE_3, ROUTE_4, ROUTE_5,
     ILE_1, ILE_2, ILE_3, ILE_4;
+    */
     public BufferedImage Atlas;
     public ArrayList<Image> Images = new ArrayList<>();
     
@@ -22,12 +24,14 @@ public class ImageManagement {
         CreationDImage();
     }
 
+
     private void CreationDImage() {
         int id =0;
         Images.add(HERBE = new Image(getSprite(9, 0),id++,"Herbe"));
         Images.add(EAU = new Image(getSprite(0, 0),id++,"Eau"));
         Images.add(ROUTE = new Image(getSprite(8, 0),id++,"Route"));
 
+        /*
         Images.add(EAU_COIN_1 = new Image(afficheImage(getImages(0,0,5, 0)),id++,"Eau_COIN_1"));
         Images.add(EAU_COIN_2 = new Image(afficheImageRot(getImages(0,0,5, 0),90,1),id++,"Eau_COIN_2"));
         Images.add(EAU_COIN_3 = new Image(afficheImageRot(getImages(0, 0, 6, 0), 90, 1), id++, "Eau_COIN_3"));
@@ -44,7 +48,7 @@ public class ImageManagement {
         Images.add(ILE_2 = new Image(afficheImageRot(getImages(0, 0, 4, 0), 90, 1), id++, "Ile_2"));
         Images.add(ILE_3 = new Image(afficheImageRot(getImages(0, 0, 4, 0), 180, 1), id++, "Ile_3"));
         Images.add(ILE_4 = new Image(afficheImageRot(getImages(0, 0, 4, 0), 270, 1), id++, "Ile_4"));
-   
+        */
 
     }
 
