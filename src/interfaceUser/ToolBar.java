@@ -139,7 +139,7 @@ public class ToolBar  extends Bar{
             edit.setChoosenImage(choosedImage);
         }
         else if (endButton.getRectangle().contains(x,y)){
-            choosedImage = new Image(imgEnd, -1, -1);
+            choosedImage = new Image(imgEnd, -2, -2);
             edit.setChoosenImage(choosedImage);
         }
         else {
@@ -219,5 +219,18 @@ public class ToolBar  extends Bar{
             button.resetBooleans();
         }
     }
+
+
+
+    public BufferedImage getStartImg() {
+        return this.imgStart;
+    }
+
+    public BufferedImage getEndImg () {
+        return this.imgEnd;
+    }
+
+
+
 
 }

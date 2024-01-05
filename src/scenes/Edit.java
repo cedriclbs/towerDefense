@@ -1,11 +1,15 @@
 package scenes;
 
+import static helper.Constante.Images.ROUTE_IMAGE;
+
 import java.awt.Graphics;
 
 import helper.Sauvegarde;
 import interfaceUser.ToolBar;
 import main.Game;
 import object.Image;
+import object.Point;
+
 import java.awt.image.BufferedImage;
 
 public class Edit extends GameScene implements interfaceScenes{
@@ -16,6 +20,7 @@ public class Edit extends GameScene implements interfaceScenes{
     private int lastImageId;
     private boolean afficheChoosen;
     private ToolBar toolBar;
+    private Point start, end;
 
     public Edit(Game game) {
         super(game);
@@ -33,7 +38,16 @@ public class Edit extends GameScene implements interfaceScenes{
         ChargerNiveau(graphics);
         toolBar.affiche(graphics);
         afficheImageChoisies(graphics);
-      
+        affichePointsSE(graphics);
+    }
+
+    private void affichePointsSE(Graphics graphics) {
+        if (start != null){
+            graphics.drawImage(toolBar.getStartImg(), start.getxPoint()*32, start.getyPoint()*32, 32,32, null);
+        }
+        if (end!=null){
+            graphics.drawImage(toolBar.getEndImg(), end.getxPoint()*32, end.getyPoint()*32, 32,32, null);
+        }
     }
 
     private void ChargerNiveau(Graphics graphics) {
@@ -72,18 +86,32 @@ public class Edit extends GameScene implements interfaceScenes{
             int tempY = y/32;
             int tempX = x/32;
 
+            if (choosedImage.getId() >= 0){
+                
+                if (tempY < 0 || tempY >= niveau.length || tempX < 0 || tempX >= niveau.length) {
+                    return;
+                }
 
-            if (tempY < 0 || tempY >= niveau.length || tempX < 0 || tempX >= niveau.length) {
-                return;
+                if (lastImageId == choosedImage.getId() && lastImageX == tempX && lastImageY == tempY){
+                    return;
+                }
+                lastImageX = tempX;
+                lastImageY = tempY;
+                lastImageId = choosedImage.getId();
+                this.niveau[tempY][tempX] = choosedImage.getId();
+            } 
+            
+            else {
+                int id = niveau[tempY][tempX];
+                if (game.getImageManagement().getImage(id).getImageType()==ROUTE_IMAGE){
+                    if (choosedImage.getId()==-1){
+                        start = new Point(tempX, tempY);
+                    } else {
+                        end = new Point(tempX, tempY);
+                    }
+                
+                }
             }
-
-            if (lastImageId == choosedImage.getId() && lastImageX == tempX && lastImageY == tempY){
-                return;
-            }
-            lastImageX = tempX;
-            lastImageY = tempY;
-            lastImageId = choosedImage.getId();
-            this.niveau[tempY][tempX] = choosedImage.getId();
         }
     }
 
