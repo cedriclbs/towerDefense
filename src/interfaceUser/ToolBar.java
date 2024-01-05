@@ -1,6 +1,9 @@
 package interfaceUser;
 
 import java.util.ArrayList;
+
+import helper.Sauvegarde;
+
 import java.awt.Color;
 import object.Image;
 import scenes.Edit;
@@ -9,7 +12,8 @@ import java.awt.Graphics;
 import static main.States.*;
 
 public class ToolBar  extends Bar{
-    private Button menuButton, sauvegarderButton;
+    private Button menuButton, sauvegarderButton, startButton, endButton;
+    private BufferedImage imgStart, imgEnd;
     private ArrayList<Button> imageButton = new ArrayList<> ();
     private Image choosedImage;
     private Edit edit;
@@ -18,7 +22,13 @@ public class ToolBar  extends Bar{
     public ToolBar(int x, int y, int width, int height,Edit edit) {
         super(x, y, width, height);
         this.edit = edit;
+        initializeImgButton();
         initializeButton();
+    }
+
+    private void initializeImgButton() {
+        imgStart = Sauvegarde.getSpriteAtlas().getSubimage(7*32, 2*32, 32, 32);
+        imgEnd = Sauvegarde.getSpriteAtlas().getSubimage(8*32, 2*32, 32, 32);
     }
 
     private void initializeButton(){
@@ -29,13 +39,18 @@ public class ToolBar  extends Bar{
         int h = 50;
         int xDepart =110;
         int yDepart = 650;
-        int xoffset = (int)(w*1.1f);
+        int xSortie = (int)(w*1.1f);
         int i =0;
 
         for(Image image : edit.getGame().getImageManagement().Images){
-            imageButton.add(new Button(image.getNom(), xDepart + xoffset*i, yDepart, w, h,i));
+            imageButton.add(new Button(image.getNom(), xDepart + xSortie*i, yDepart, w, h,i));
             i++;
         }
+
+        startButton = new Button("Start", xDepart, xSortie + yDepart,w,h,i++);
+        endButton = new Button("End", xDepart+xSortie, xSortie + yDepart,w,h,i++);
+
+
     }
 
     private void sauvegarderNiveau() {
@@ -51,8 +66,34 @@ public class ToolBar  extends Bar{
     private void afficheButton(Graphics graphics){
         menuButton.draw(graphics);
         sauvegarderButton.draw(graphics);
+
+        afficheButtonSupp(graphics,startButton,imgStart);
+        afficheButtonSupp(graphics,endButton,imgEnd);
+
+        /*
+        startButton.draw(graphics);
+        endButton.draw(graphics);
+        */
         afficheImageButton(graphics);
         afficheImageChoisies(graphics);
+    }
+
+    private void afficheButtonSupp(Graphics graphics, Button startButton2, BufferedImage imgStart2) {
+        graphics.drawImage(imgStart2, startButton2.x, startButton2.y, startButton2.width, startButton2.height, null);
+        
+        //fonction drawButtonFeedback(g,b)
+        if(startButton2.getMouseOnIt()){
+            graphics.setColor(Color.BLUE);
+        } else {
+            graphics.setColor(Color.BLACK);
+        }
+        graphics.drawRect(startButton2.x, startButton2.y, startButton2.width, startButton2.height);
+
+        if (startButton2.getMousePressed()){
+                graphics.drawRect(startButton2.x+1, startButton2.y+1, startButton2.width-2, startButton2.height-2);
+                graphics.drawRect(startButton2.x+2, startButton2.y+2, startButton2.width-4, startButton2.height-4);
+        }
+
     }
 
     private void afficheImageChoisies(Graphics graphics) {
@@ -93,6 +134,13 @@ public class ToolBar  extends Bar{
 			setStates(MENU);
         } else if (sauvegarderButton.getRectangle().contains(x,y)){
             sauvegarderNiveau();
+        } else if (startButton.getRectangle().contains(x,y)){
+            choosedImage = new Image(imgStart, -1, -1);
+            edit.setChoosenImage(choosedImage);
+        }
+        else if (endButton.getRectangle().contains(x,y)){
+            choosedImage = new Image(imgEnd, -2, -2);
+            edit.setChoosenImage(choosedImage);
         }
         else {
             for (Button button : imageButton){
@@ -108,6 +156,9 @@ public class ToolBar  extends Bar{
     public void mouseMoved(int x, int y) {
 		menuButton.setMouseOnIt(false);
         sauvegarderButton.setMouseOnIt(false);
+        startButton.setMouseOnIt(false);
+        endButton.setMouseOnIt(false);
+
         for (Button b : imageButton){
             b.setMouseOnIt(false);
         }
@@ -118,6 +169,12 @@ public class ToolBar  extends Bar{
         } 
         else if (sauvegarderButton.getRectangle().contains(x,y)){
             sauvegarderButton.setMouseOnIt(true);
+        }
+        else if (startButton.getRectangle().contains(x,y)){
+            startButton.setMouseOnIt(true);
+        }
+        else if (endButton.getRectangle().contains(x,y)){
+            endButton.setMouseOnIt(true);
         }
         else {
             for (Button button : imageButton){
@@ -136,6 +193,12 @@ public class ToolBar  extends Bar{
         } else if (sauvegarderButton.getRectangle().contains(x,y)){
             sauvegarderButton.setMousePressed(true);
         }
+        else if (startButton.getRectangle().contains(x,y)){
+            startButton.setMousePressed(true);
+        }
+        else if (endButton.getRectangle().contains(x,y)){
+            endButton.setMousePressed(true);
+        }
         else {
             for (Button button : imageButton){
                 if (button.getRectangle().contains(x,y)){
@@ -150,9 +213,24 @@ public class ToolBar  extends Bar{
 	public void mouseReleased(int x, int y) {
 		menuButton.resetBooleans();
         sauvegarderButton.resetBooleans();
+        startButton.resetBooleans();
+        endButton.resetBooleans();
         for (Button button : imageButton){
             button.resetBooleans();
         }
     }
+
+
+
+    public BufferedImage getStartImg() {
+        return this.imgStart;
+    }
+
+    public BufferedImage getEndImg () {
+        return this.imgEnd;
+    }
+
+
+
 
 }
