@@ -13,11 +13,12 @@ import static helper.Constante.Direction.*;
 import static helper.Constante.Images.*;
 import static helper.Constante.Monstres.*;
 
+
 public class MonsterManagement {
     private Jouer jouer;
     private BufferedImage[] monstreimg;
     private ArrayList<Monstres> monstre = new ArrayList<>();
-    private float vitesse = 0.5f;
+    //private float vitesse = 0.5f;
     private Point start, end;
 
     
@@ -26,6 +27,7 @@ public class MonsterManagement {
         monstreimg = new BufferedImage[4];
         this.start = start;
         this.end=end;
+        
         AjouterMonstres(ARAIGNEE);
         AjouterMonstres(COCHON);
         AjouterMonstres(MONSTREVERT);
@@ -76,12 +78,12 @@ public class MonsterManagement {
             setNewDirectionMove(m);
         }
 
-        int newX = (int)(m.getX() + getSpeedH(m.getLastdirection()));
-        int newY = (int)(m.getY() + getSpeedW(m.getLastdirection()));
+        int newX = (int)(m.getX() + getSpeedH(m.getLastdirection(),m.getTypeMonstre()));
+        int newY = (int)(m.getY() + getSpeedW(m.getLastdirection(),m.getTypeMonstre()));
 
         if(getImageType(newX, newY) == ROUTE_IMAGE){
             //continue sur la meme dir
-            m.MoveMonster(vitesse,m.getLastdirection());
+            m.MoveMonster(getVitesse(m.getTypeMonstre()),m.getLastdirection());
         }
         else if(EstFin(m)){
             System.out.println("Vies perdues");
@@ -105,21 +107,21 @@ public class MonsterManagement {
         }
 
         if(dir == LEFT || dir == RIGHT){
-            int newY = (int)(m.getY() + getSpeedW(UP));
+            int newY = (int)(m.getY() + getSpeedW(UP,m.getTypeMonstre()));
             if(getImageType((int)m.getX(), newY) == ROUTE_IMAGE){
-                m.MoveMonster(vitesse, UP);
+                m.MoveMonster(getVitesse(m.getTypeMonstre()), UP);
             }
             else{
-                m.MoveMonster(vitesse, DOWN);
+                m.MoveMonster(getVitesse(m.getTypeMonstre()), DOWN);
             }
         }
         else{
-            int newX = (int)(m.getX() + getSpeedH(RIGHT));
+            int newX = (int)(m.getX() + getSpeedH(RIGHT,m.getTypeMonstre()));
             if(getImageType(newX, (int)m.getY()) == ROUTE_IMAGE ){
-                m.MoveMonster(vitesse, RIGHT);
+                m.MoveMonster(getVitesse(m.getTypeMonstre()), RIGHT);
             }
             else{
-                m.MoveMonster(vitesse, LEFT);
+                m.MoveMonster(getVitesse(m.getTypeMonstre()), LEFT);
             }
         }
     }
@@ -154,22 +156,22 @@ public class MonsterManagement {
         return jouer.getImageType(x,y);
     }
 
-    private float getSpeedW(int direc) {
+    private float getSpeedW(int direc, int TypeMonstre) {
         if(direc == UP){
-            return -vitesse;
+            return -getVitesse(TypeMonstre);
         }
         else if(direc == DOWN){
-            return vitesse + 32;
+            return getVitesse(TypeMonstre) + 32;
         }
         return 0;
     }
 
-    private float getSpeedH(int direc) {
+    private float getSpeedH(int direc, int TypeMonstre) {
         if(direc == LEFT){
-            return -vitesse;
+            return -getVitesse(TypeMonstre);
         }
         else if(direc == RIGHT){
-            return vitesse +32;
+            return getVitesse(TypeMonstre) +32;
         }
         return 0;
     }
