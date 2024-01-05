@@ -5,10 +5,11 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import Monster.Monstres;
+import Monster.*;
 import helper.Sauvegarde;
 import static helper.Constante.Direction.*;
 import static helper.Constante.Images.*;
+import static helper.Constante.Monstres.*;
 
 public class MonsterManagement {
     private Jouer jouer;
@@ -19,32 +20,53 @@ public class MonsterManagement {
     public MonsterManagement(Jouer jouer){
         this.jouer = jouer;
         monstreimg = new BufferedImage[4];
-        AjouterMonstres(3*32, 9*32);
+        AjouterMonstres(0*32, 19*32,ARAIGNEE);
+        AjouterMonstres(2*32, 8*32,COCHON);
+        AjouterMonstres(8*32, 8*32,MONSTREVERT);
+        AjouterMonstres(8*32, 14*32,RHINO);
+
         ChargerMonstresimg();
     }
     
     private void ChargerMonstresimg() {
         BufferedImage res = Sauvegarde.getSpriteAtlas();
-        monstreimg[0] = res.getSubimage(0, 32,32, 32);
-        monstreimg[1] = res.getSubimage(32, 32,32, 32);
-        monstreimg[2] = res.getSubimage(2*32, 32,32, 32);
-        monstreimg[3] = res.getSubimage(3*32, 32,32, 32);
+
+        for (int i = 0 ; i< 4 ;i++){
+            monstreimg[i] = res.getSubimage(i*32, 32,32, 32);
+        }
     }
 
-    public void AjouterMonstres(int x, int y){
-        monstre.add(new Monstres(x, y, 0, 0));
+    public void AjouterMonstres(int x, int y, int type){
+        
+        switch (type){
+            case ARAIGNEE:
+                monstre.add(new Araignee(x, y, 0));
+                break;
+            case COCHON : 
+                monstre.add(new Cochon(x, y, 0));
+                break;
+            case MONSTREVERT : 
+                monstre.add(new MonstreVert(x, y, 0));
+                break;
+            case RHINO : 
+                monstre.add(new Rhino(x, y, 0));
+                break;
+        }
     }
 
     public void update(){
         for(Monstres m: monstre){
-            if(isNextImageRoad(m)){
-                
-            }
+            updateMouvementMonstre(m);
         }
 
     }
 
-    private boolean isNextImageRoad(Monstres m) {
+    private void updateMouvementMonstre (Monstres m) {
+
+        if (m.getLastdirection()==-1){
+            setNewDirectionMove(m);
+        }
+
         int newX = (int)(m.getX() + getSpeedH(m.getLastdirection()));
         int newY = (int)(m.getY() + getSpeedW(m.getLastdirection()));
 
@@ -60,7 +82,6 @@ public class MonsterManagement {
             setNewDirectionMove(m);
         }
        
-        return false;
     }
 
     private void setNewDirectionMove(Monstres m) {
@@ -142,6 +163,6 @@ public class MonsterManagement {
     }
 
     private void afficheMonstre(Monstres m, Graphics graphics) {
-        graphics.drawImage(monstreimg[0], (int)m.getX(), (int)m.getY(), null);
+        graphics.drawImage(monstreimg[m.getTypeMonstre()], (int)m.getX(), (int)m.getY(), null);
     }
 }

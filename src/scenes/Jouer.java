@@ -56,12 +56,12 @@ public class Jouer extends GameScene implements interfaceScenes {
     }
 
     public int getImageType(int x, int y){
-        int xCord = x / 32;
-		int yCord = y / 32;
+        int xTemp = x / 32;
+		int yTemp = y / 32;
 		
-		if(xCord < 0 || xCord > 19)
+		if(xTemp < 0 || xTemp > 19)
 			return 0;
-		if(yCord < 0 || yCord > 19)
+		if(yTemp < 0 || yTemp > 19)
 			return 0;
             
         int id = niveau[y/32][x/32];
@@ -74,7 +74,7 @@ public class Jouer extends GameScene implements interfaceScenes {
         if(y>=640){
             bottomBar.mouseClicked(x, y);
         }else{
-            monsterManagement.AjouterMonstres(x, y);
+            monsterManagement.AjouterMonstres(x, y,0);
         }
 	}
 

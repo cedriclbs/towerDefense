@@ -20,7 +20,7 @@ public class Edit extends GameScene implements interfaceScenes{
     public Edit(Game game) {
         super(game);
         chargerNivParDefault();
-        toolBar =new ToolBar(0,640,640,100,this);
+        toolBar =new ToolBar(0,640,640,160,this);
     }
 
     private void chargerNivParDefault() {
@@ -71,6 +71,11 @@ public class Edit extends GameScene implements interfaceScenes{
 
             int tempY = y/32;
             int tempX = x/32;
+
+
+            if (tempY < 0 || tempY >= niveau.length || tempX < 0 || tempX >= niveau.length) {
+                return;
+            }
 
             if (lastImageId == choosedImage.getId() && lastImageX == tempX && lastImageY == tempY){
                 return;
