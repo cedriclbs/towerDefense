@@ -11,6 +11,8 @@ import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
+import object.Point;
+
 public class Sauvegarde {
 
     public static BufferedImage getSpriteAtlas(){
@@ -53,17 +55,41 @@ public class Sauvegarde {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			UpdateFile(nouveauNiveau,idA);
+			UpdateFile(nouveauNiveau,idA, new Point(0,0), new Point(0,0));
 		}
 	}
 
-	private static void UpdateFile(File file, int[] idA){
+
+
+	public static ArrayList<Point> getNiveauPoint (String nom){
+		File niveauFile = new File ("txt/"+nom+".txt");
+
+		if (niveauFile.exists()){
+			ArrayList<Integer> liste = LectureFile(niveauFile);
+			ArrayList<Point> nivpoints = new ArrayList<>();
+			nivpoints.add(new Point(liste.get(400), liste.get(401)));
+			nivpoints.add(new Point(liste.get(402), liste.get(403)));
+			return nivpoints;
+		} else {
+			System.out.println("Fichier :" + nom + " n'existe pas.");
+			return null;
+		}
+	}
+
+
+
+	private static void UpdateFile(File file, int[] idA, Point start, Point end){
 	
 		try {
 			PrintWriter write = new PrintWriter(file);
 			for(Integer i: idA){
 				write.println(i);
 			}
+			write.println(start.getxPoint());
+			write.println(start.getyPoint());
+			write.println(end.getxPoint());
+			write.println(end.getyPoint());
+			
 			write.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -100,11 +126,11 @@ public class Sauvegarde {
 	}
 
 
-	public static void SauvNiveau (String nom, int [][]tab){
+	public static void SauvNiveau (String nom, int [][]tab, Point start, Point end){
 		File niveau = new File("txt/"+nom +".txt");
 
 		if (niveau.exists()){
-			UpdateFile(niveau, Conversion.convertir2en1(tab));
+			UpdateFile(niveau, Conversion.convertir2en1(tab), start, end);
 		} else {
 			System.out.println("fichier non existant");
 			return;

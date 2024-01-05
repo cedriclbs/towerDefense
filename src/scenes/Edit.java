@@ -11,6 +11,8 @@ import object.Image;
 import object.Point;
 
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Edit extends GameScene implements interfaceScenes{
     private int[][] niveau;
@@ -30,6 +32,9 @@ public class Edit extends GameScene implements interfaceScenes{
 
     private void chargerNivParDefault() {
         niveau = Sauvegarde.getNiveau("Nouveau_niveau");
+        ArrayList<Point> nivpoints = Sauvegarde.getNiveauPoint("Nouveau_niveau");
+        start = nivpoints.get(0);
+        end = nivpoints.get(1);
     }
     
 
@@ -71,7 +76,7 @@ public class Edit extends GameScene implements interfaceScenes{
     }
 
     public void sauvegarderNiveau() {
-        Sauvegarde.SauvNiveau("Nouveau_niveau", niveau);
+        Sauvegarde.SauvNiveau("Nouveau_niveau", niveau, start, end);
         game.getJouer().setNiveau(niveau);
     }
 
