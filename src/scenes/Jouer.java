@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import helper.Sauvegarde;
 import interfaceUser.ActionBar;
 import main.Game;
+import management.HeroManagement;
 import management.MonsterManagement;
 import object.Point;
 
@@ -16,6 +17,7 @@ public class Jouer extends GameScene implements interfaceScenes {
     private ActionBar bottomBar;
     private int xMoved, yMoved; 
     private MonsterManagement monsterManagement;
+    private HeroManagement heroManagement;
     private Point start, end;
 
 
@@ -24,6 +26,7 @@ public class Jouer extends GameScene implements interfaceScenes {
         chargerNivParDefault();
         bottomBar = new ActionBar(0,640,640,160,this);
         monsterManagement = new MonsterManagement(this, start, end);
+        heroManagement = new HeroManagement(this);
     }
 
 
@@ -47,6 +50,7 @@ public class Jouer extends GameScene implements interfaceScenes {
         ChargerNiveau(graphics);
         bottomBar.affiche(graphics);
         monsterManagement.affiche(graphics);
+        heroManagement.affiche(graphics);;
     }
 
     private void ChargerNiveau(Graphics graphics) {
