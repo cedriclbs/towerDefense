@@ -5,46 +5,77 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import Monster.Monstres;
+import Monster.*;
 import helper.Sauvegarde;
+import object.Point;
+
 import static helper.Constante.Direction.*;
 import static helper.Constante.Images.*;
+import static helper.Constante.Monstres.*;
 
 public class MonsterManagement {
     private Jouer jouer;
     private BufferedImage[] monstreimg;
     private ArrayList<Monstres> monstre = new ArrayList<>();
     private float vitesse = 0.5f;
+    private Point start, end;
+
     
-    public MonsterManagement(Jouer jouer){
+    public MonsterManagement(Jouer jouer, Point start, Point end){
         this.jouer = jouer;
         monstreimg = new BufferedImage[4];
-        AjouterMonstres(3*32, 9*32);
+        this.start = start;
+        this.end=end;
+        AjouterMonstres(ARAIGNEE);
+        AjouterMonstres(COCHON);
+        AjouterMonstres(MONSTREVERT);
+        AjouterMonstres(RHINO);
+
         ChargerMonstresimg();
     }
     
     private void ChargerMonstresimg() {
         BufferedImage res = Sauvegarde.getSpriteAtlas();
-        monstreimg[0] = res.getSubimage(0, 32,32, 32);
-        monstreimg[1] = res.getSubimage(32, 32,32, 32);
-        monstreimg[2] = res.getSubimage(2*32, 32,32, 32);
-        monstreimg[3] = res.getSubimage(3*32, 32,32, 32);
+
+        for (int i = 0 ; i< 4 ;i++){
+            monstreimg[i] = res.getSubimage(i*32, 32,32, 32);
+        }
     }
 
-    public void AjouterMonstres(int x, int y){
-        monstre.add(new Monstres(x, y, 0, 0));
+    public void AjouterMonstres(int type){
+
+        int x = start.getxPoint()*32;
+        int y = start.getyPoint()*32;
+        
+        switch (type){
+            case ARAIGNEE:
+                monstre.add(new Araignee(x, y, 0));
+                break;
+            case COCHON : 
+                monstre.add(new Cochon(x, y, 0));
+                break;
+            case MONSTREVERT : 
+                monstre.add(new MonstreVert(x, y, 0));
+                break;
+            case RHINO : 
+                monstre.add(new Rhino(x, y, 0));
+                break;
+        }
     }
 
     public void update(){
         for(Monstres m: monstre){
-            if(isNextImageRoad(m)){
-                
-            }
+            updateMouvementMonstre(m);
         }
 
     }
 
-    private boolean isNextImageRoad(Monstres m) {
+    private void updateMouvementMonstre (Monstres m) {
+
+        if (m.getLastdirection()==-1){
+            setNewDirectionMove(m);
+        }
+
         int newX = (int)(m.getX() + getSpeedH(m.getLastdirection()));
         int newY = (int)(m.getY() + getSpeedW(m.getLastdirection()));
 
@@ -53,14 +84,13 @@ public class MonsterManagement {
             m.MoveMonster(vitesse,m.getLastdirection());
         }
         else if(EstFin(m)){
-            //est à la fin
+            System.out.println("Vies perdues");
         }
         else{
             //cherche une new dir
             setNewDirectionMove(m);
         }
        
-        return false;
     }
 
     private void setNewDirectionMove(Monstres m) {
@@ -69,6 +99,10 @@ public class MonsterManagement {
         int CorY = (int) (m.getY()/32);
 
         MonstreCoordoCorrect(m,dir,CorX,CorY);
+
+        if(EstFin(m)){
+            return;
+        }
 
         if(dir == LEFT || dir == RIGHT){
             int newY = (int)(m.getY() + getSpeedW(UP));
@@ -108,6 +142,11 @@ public class MonsterManagement {
     }
 
     private boolean EstFin(Monstres m) {
+        if (m.getX()==end.getxPoint()*32){
+            if(m.getY()==end.getyPoint()*32){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -142,6 +181,6 @@ public class MonsterManagement {
     }
 
     private void afficheMonstre(Monstres m, Graphics graphics) {
-        graphics.drawImage(monstreimg[0], (int)m.getX(), (int)m.getY(), null);
+        graphics.drawImage(monstreimg[m.getTypeMonstre()], (int)m.getX(), (int)m.getY(), null);
     }
 }

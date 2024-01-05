@@ -3,7 +3,7 @@ package Monster;
 import java.awt.Rectangle;
 import static helper.Constante.Direction.*;
 
-public class Monstres {
+public abstract class Monstres {
     private float x;
     private float y;
     private Rectangle bounds;
@@ -18,7 +18,7 @@ public class Monstres {
         this.id = id;
         this.typedemonstre = typedemonstre;
         bounds = new Rectangle((int) x, (int) y, 32, 32);
-        lastdirection = RIGHT;
+        lastdirection = -1;
     }
 
     public void MoveMonster(float vitesse, int direction) {

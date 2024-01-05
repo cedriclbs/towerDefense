@@ -16,5 +16,16 @@ public class Constante {
         public static final int HERBE_IMAGE = 1;
         public static final int ROUTE_IMAGE = 2;
     }
+
+
+    public static class Monstres {
+        public static final int ARAIGNEE = 0;
+        public static final int COCHON = 1;
+        public static final int MONSTREVERT = 2;
+        public static final int RHINO = 3;
+    }
+
+
+
     
 }
