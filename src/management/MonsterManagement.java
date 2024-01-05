@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import Monster.*;
 import helper.Sauvegarde;
+import object.Point;
+
 import static helper.Constante.Direction.*;
 import static helper.Constante.Images.*;
 import static helper.Constante.Monstres.*;
@@ -16,14 +18,18 @@ public class MonsterManagement {
     private BufferedImage[] monstreimg;
     private ArrayList<Monstres> monstre = new ArrayList<>();
     private float vitesse = 0.5f;
+    private Point start, end;
+
     
-    public MonsterManagement(Jouer jouer){
+    public MonsterManagement(Jouer jouer, Point start, Point end){
         this.jouer = jouer;
         monstreimg = new BufferedImage[4];
-        AjouterMonstres(0*32, 19*32,ARAIGNEE);
-        AjouterMonstres(2*32, 8*32,COCHON);
-        AjouterMonstres(8*32, 8*32,MONSTREVERT);
-        AjouterMonstres(8*32, 14*32,RHINO);
+        this.start = start;
+        this.end=end;
+        AjouterMonstres(ARAIGNEE);
+        AjouterMonstres(COCHON);
+        AjouterMonstres(MONSTREVERT);
+        AjouterMonstres(RHINO);
 
         ChargerMonstresimg();
     }
@@ -36,7 +42,10 @@ public class MonsterManagement {
         }
     }
 
-    public void AjouterMonstres(int x, int y, int type){
+    public void AjouterMonstres(int type){
+
+        int x = start.getxPoint()*32;
+        int y = start.getyPoint()*32;
         
         switch (type){
             case ARAIGNEE:
@@ -75,7 +84,7 @@ public class MonsterManagement {
             m.MoveMonster(vitesse,m.getLastdirection());
         }
         else if(EstFin(m)){
-            //est à la fin
+            System.out.println("Vies perdues");
         }
         else{
             //cherche une new dir
@@ -90,6 +99,10 @@ public class MonsterManagement {
         int CorY = (int) (m.getY()/32);
 
         MonstreCoordoCorrect(m,dir,CorX,CorY);
+
+        if(EstFin(m)){
+            return;
+        }
 
         if(dir == LEFT || dir == RIGHT){
             int newY = (int)(m.getY() + getSpeedW(UP));
@@ -129,6 +142,11 @@ public class MonsterManagement {
     }
 
     private boolean EstFin(Monstres m) {
+        if (m.getX()==end.getxPoint()*32){
+            if(m.getY()==end.getyPoint()*32){
+                return true;
+            }
+        }
         return false;
     }
 

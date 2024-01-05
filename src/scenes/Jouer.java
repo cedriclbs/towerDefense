@@ -6,25 +6,32 @@ import helper.Sauvegarde;
 import interfaceUser.ActionBar;
 import main.Game;
 import management.MonsterManagement;
+import object.Point;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Jouer extends GameScene implements interfaceScenes {
     private int[][] niveau;
     private ActionBar bottomBar;
     private int xMoved, yMoved; 
     private MonsterManagement monsterManagement;
+    private Point start, end;
+
 
     public Jouer(Game game) {
         super(game);
         chargerNivParDefault();
-        bottomBar = new ActionBar(0,640,640,100,this);
-        monsterManagement = new MonsterManagement(this);
+        bottomBar = new ActionBar(0,640,640,160,this);
+        monsterManagement = new MonsterManagement(this, start, end);
     }
 
 
     private void chargerNivParDefault() {
         niveau = Sauvegarde.getNiveau("Nouveau_niveau");
+        ArrayList<Point> nivpoints = Sauvegarde.getNiveauPoint("Nouveau_niveau");
+        start = nivpoints.get(0);
+        end = nivpoints.get(1);
     }
 
     public void setNiveau(int[][] niveau) {
@@ -74,7 +81,7 @@ public class Jouer extends GameScene implements interfaceScenes {
         if(y>=640){
             bottomBar.mouseClicked(x, y);
         }else{
-            monsterManagement.AjouterMonstres(x, y,0);
+            //monsterManagement.AjouterMonstres(x, y,0);
         }
 	}
 
