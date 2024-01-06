@@ -10,8 +10,8 @@ public class Constante {
         public static final int ARCHER = 1;
         public static final int MAGE = 2;
         
-        public static String getNom(int herotype){
-            switch(herotype){
+        public static String getNom(int typeHeros){
+            switch(typeHeros){
                 case CANNON:
                 return "Cannon";
                 case ARCHER:
@@ -21,6 +21,51 @@ public class Constante {
             }
             return "";
         }
+
+        public static float getDefaultDegats (int typeHeros){
+            switch(typeHeros){
+                case CANNON:
+                return 30;
+                case ARCHER:
+                return 20;
+                case MAGE:
+                return 10;
+            }
+            return 0;
+        }
+
+        public static float getDefaultPortee (int typeHeros){
+            switch(typeHeros){
+                case CANNON:
+                return 100;
+                case ARCHER:
+                return 100;
+                case MAGE:
+                return 100;
+            }
+            return 0;
+        }
+
+        public static float getDefaultTpsEcoulement (int typeHeros){
+            switch(typeHeros){
+                case CANNON:
+                return 10;
+                case ARCHER:
+                return 10;
+                case MAGE:
+                return 10;
+            }
+            return 0;
+        }
+
+
+
+
+
+
+
+
+
     }
 
     public static class Direction {
@@ -53,6 +98,20 @@ public class Constante {
                 return 0.55f;
                 case RHINO: //cochon
                 return 0.65f;
+            }
+            return 0;
+        }
+
+        public static int getDefaultHealth(int typedemonstre) {
+            switch(typedemonstre){
+                case ARAIGNEE://rhino
+                return 100;
+                case COCHON://monstrevert
+                return 80;
+                case MONSTREVERT://araigne
+                return 20;
+                case RHINO: //cochon
+                return 60;
             }
             return 0;
         }

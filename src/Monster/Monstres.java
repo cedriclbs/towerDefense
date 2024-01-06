@@ -39,6 +39,11 @@ public abstract class Monstres {
         }
     }
 
+
+    protected void setDefaultHealth () {
+        pv = helper.Constante.Monstres.getDefaultHealth(typedemonstre);
+    }
+
     public void setPosition(int x, int y) { //pour la position des monstres
         this.x = x;
         this.y = y;

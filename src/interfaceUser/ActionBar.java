@@ -71,7 +71,14 @@ public class ActionBar extends Bar{
             graphics.setColor(Color.gray);
             graphics.drawString(""+Heros.getNom(afficherHero.getHeroType()), 490, 660);
             graphics.drawString("ID:"+afficherHero.getId(), 490, 675);
+            afficheContoursHeroChoisis(graphics);
         }
+    }
+
+    private void afficheContoursHeroChoisis(Graphics graphics) {
+        graphics.setColor(Color.GREEN);
+        graphics.drawRect(afficherHero.getX(), afficherHero.getY(), 32, 32);
+
     }
 
     public void mouseClicked(int x, int y) {
