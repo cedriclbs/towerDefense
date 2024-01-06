@@ -30,7 +30,7 @@ public class Sauvegarde {
     }
     
 	public static void CreationOfFile(){
-		File txtFile = new File("txt" + File.separator + "testTestFile.txt");
+		File txtFile = new File("ressources/txt" + File.separator + "testTestFile.txt");
 		
 		try {
 			txtFile.createNewFile();
@@ -40,7 +40,7 @@ public class Sauvegarde {
 	}
 
 	public static void CreationNiveau(String nom,int[] idA){
-		File directory = new File("txt");
+		File directory = new File("ressources/txt");
 		if (!directory.exists()) {
 			directory.mkdirs();
 		}
@@ -62,7 +62,7 @@ public class Sauvegarde {
 
 
 	public static ArrayList<Point> getNiveauPoint (String nom){
-		File niveauFile = new File ("txt/"+nom+".txt");
+		File niveauFile = new File ("ressources/txt/"+nom+".txt");
 
 		if (niveauFile.exists()){
 			ArrayList<Integer> liste = LectureFile(niveauFile);
@@ -113,7 +113,7 @@ public class Sauvegarde {
 
 
 	public static int[][] getNiveau (String nom){
-		File niveauFile = new File ("txt/"+nom+".txt");
+		File niveauFile = new File ("ressources/txt/"+nom+".txt");
 
 		if (niveauFile.exists()){
 			ArrayList<Integer> liste = LectureFile(niveauFile);
@@ -127,7 +127,7 @@ public class Sauvegarde {
 
 
 	public static void SauvNiveau (String nom, int [][]tab, Point start, Point end){
-		File niveau = new File("txt/"+nom +".txt");
+		File niveau = new File("ressources/txt/"+nom +".txt");
 
 		if (niveau.exists()){
 			UpdateFile(niveau, Conversion.convertir2en1(tab), start, end);
