@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import helper.Sauvegarde;
 import object.Hero;
 import java.awt.Graphics;
-import static helper.Constante.Heros.*;
 import Monster.*;
 
 public class HeroManagement {
@@ -43,21 +42,27 @@ public class HeroManagement {
     }
 
     public void update(){
-        AttaqueMonstre();
+        for(Hero h: heros){
+            h.update();
+            AttaqueMonstre(h);
+        }
     }
 
-    private void AttaqueMonstre() {
-        for(Hero h: heros){
-            for(Monstres m : jouer.getMonsterManagement().getMonstres()){
-                if(m.estVivant()){
-                    if(MonstreAPortee(h,m)){
-                        m.damage(1);
-                    }else{
-
+    private void AttaqueMonstre(Hero h) {
+    
+        for(Monstres m : jouer.getMonsterManagement().getMonstres()){
+            if(m.estVivant()){
+                if(MonstreAPortee(h,m)){
+                    if(h.EstFinRecharge()){
+                        jouer.TireSurMonstre(h,m);
+                        h.resetRecharge();
                     }
+                }else{
+
                 }
             }
         }
+
     }
 
     private boolean MonstreAPortee(Hero h, Monstres m) {

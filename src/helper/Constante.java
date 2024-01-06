@@ -5,8 +5,8 @@ public class Constante {
 
     public static class Missiles{
         public static final int FLECHE = 0;
-        public static final int BOMBE = 1;
-        public static final int GIVRE = 2;
+        public static final int BOMBE = 2;
+        public static final int GIVRE = 1;
 
         public static float getVitesse(int type){
             switch(type){
@@ -40,12 +40,12 @@ public class Constante {
             return "";
         }
 
-        public static float getDefaultDegats (int typeHeros){
+        public static int getDefaultDegats (int typeHeros){
             switch(typeHeros){
                 case CANNON:
                 return 30;
                 case ARCHER:
-                return 20;
+                return 15;
                 case MAGE:
                 return 10;
             }

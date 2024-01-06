@@ -8,6 +8,7 @@ import helper.Sauvegarde;
 import interfaceUser.ActionBar;
 import main.Game;
 import management.HeroManagement;
+import management.MissileManagement;
 import management.MonsterManagement;
 import object.Hero;
 import object.Point;
@@ -17,6 +18,8 @@ import static helper.Constante.Images.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import Monster.Monstres;
+
 public class Jouer extends GameScene implements interfaceScenes {
 
 
@@ -25,6 +28,7 @@ public class Jouer extends GameScene implements interfaceScenes {
     private int xMoved, yMoved; 
     private MonsterManagement monsterManagement;
     private HeroManagement heroManagement;
+    private MissileManagement missileManagement;
     private Point start, end;
     private Hero choosedHero;
 
@@ -35,7 +39,8 @@ public class Jouer extends GameScene implements interfaceScenes {
         bottomBar = new ActionBar(0,640,640,160,this);
         monsterManagement = new MonsterManagement(this, start, end);
         heroManagement = new HeroManagement(this);
-    }
+        missileManagement = new MissileManagement(this);
+;    }
 
 
     private void chargerNivParDefault() {
@@ -61,6 +66,7 @@ public class Jouer extends GameScene implements interfaceScenes {
     public void update(){
         monsterManagement.update();
         heroManagement.update();
+        missileManagement.update();
     }
 
     @Override
@@ -69,6 +75,8 @@ public class Jouer extends GameScene implements interfaceScenes {
         bottomBar.affiche(graphics);
         monsterManagement.affiche(graphics);
         heroManagement.affiche(graphics);
+        missileManagement.affiche(graphics);
+        
         afficheChoosedHero(graphics);
         afficheContourHero(graphics);
     }
@@ -180,6 +188,11 @@ public class Jouer extends GameScene implements interfaceScenes {
 
     public void setChoosenHero(Hero choosedHero) {
         this.choosedHero = choosedHero;
+    }
+
+
+    public void TireSurMonstre(Hero h, Monstres m) {
+        missileManagement.NouveauMissile(h, m);
     } 
 
 }
