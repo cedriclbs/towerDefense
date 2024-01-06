@@ -70,7 +70,9 @@ public class MonsterManagement {
 
     public void update(){
         for(Monstres m: monstre){
-            updateMouvementMonstre(m);
+            if(m.estVivant()){
+                updateMouvementMonstre(m);
+            }
         }
 
     }
@@ -181,8 +183,10 @@ public class MonsterManagement {
 
     public void affiche(Graphics graphics){
         for(Monstres m: monstre){
-           afficheMonstre(m, graphics);
-           afficheBarreDeSante(m, graphics);
+            if(m.estVivant()){
+                afficheMonstre(m, graphics);
+                afficheBarreDeSante(m, graphics);
+            }
         }
     }
 
@@ -198,5 +202,9 @@ public class MonsterManagement {
 
     private void afficheMonstre(Monstres m, Graphics graphics) {
         graphics.drawImage(monstreimg[m.getTypeMonstre()], (int)m.getX(), (int)m.getY(), null);
+    }
+
+    public ArrayList<Monstres> getMonstres(){
+        return monstre;
     }
 }

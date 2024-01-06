@@ -1,8 +1,26 @@
 package helper;
 
-import object.Image;
-
 public class Constante {
+
+
+    public static class Missiles{
+        public static final int FLECHE = 0;
+        public static final int BOMBE = 1;
+        public static final int GIVRE = 2;
+
+        public static float getVitesse(int type){
+            switch(type){
+                case FLECHE:
+                    return 3f;
+                case BOMBE:
+                    return 1f;
+                case GIVRE:
+                    return 2f;
+            }
+            return 0f;
+        }
+        
+    }
     
     public static class Heros{
         

@@ -12,6 +12,7 @@ public abstract class Monstres {
     protected int typeDeMonstre;
     protected int lastDirection;
     protected int maxSante;
+    protected boolean vivant = true;
     
     public Monstres(float x, float y, int id, int typeDeMonstre) {
         this.x = x;
@@ -82,6 +83,17 @@ public abstract class Monstres {
 
     public int getLastDirection(){
         return lastDirection;
+    }
+
+    public void damage(int damage) {
+        this.sante -= damage;
+        if(sante <= 0){
+            vivant = false;
+        }
+    }
+
+    public boolean estVivant(){
+        return vivant;
     }
 
 }

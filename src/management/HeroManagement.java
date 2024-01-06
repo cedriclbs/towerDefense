@@ -8,6 +8,7 @@ import helper.Sauvegarde;
 import object.Hero;
 import java.awt.Graphics;
 import static helper.Constante.Heros.*;
+import Monster.*;
 
 public class HeroManagement {
     private Jouer jouer;
@@ -42,7 +43,27 @@ public class HeroManagement {
     }
 
     public void update(){
-        
+        AttaqueMonstre();
+    }
+
+    private void AttaqueMonstre() {
+        for(Hero h: heros){
+            for(Monstres m : jouer.getMonsterManagement().getMonstres()){
+                if(m.estVivant()){
+                    if(MonstreAPortee(h,m)){
+                        m.damage(1);
+                    }else{
+
+                    }
+                }
+            }
+        }
+    }
+
+    private boolean MonstreAPortee(Hero h, Monstres m) {
+        int distance = helper.Conversion.getHypDistance(h.getX(), h.getY(), m.getX(), m.getY());
+         
+        return distance < h.getPortee();
     }
 
     public void ajouteHero(Hero choosedHero, int x, int y) {

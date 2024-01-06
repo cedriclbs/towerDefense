@@ -181,4 +181,5 @@ public class Jouer extends GameScene implements interfaceScenes {
     public void setChoosenHero(Hero choosedHero) {
         this.choosedHero = choosedHero;
     } 
+
 }
