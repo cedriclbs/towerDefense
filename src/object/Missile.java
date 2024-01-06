@@ -5,17 +5,26 @@ import java.awt.geom.Point2D;
 public class Missile {
     private Point2D.Float pos;
     private boolean activer = true;
-    private int id, typeMissile;
+    private int id;
+    private int typeMissile;
+    private float vitessex;
+    private float vitessey;
 
-    public Missile(float x, float y, int id, int typeMissile){
+    public Missile(float x, float y,float vitessex, float vitessey, int id, int typeMissile){
         pos = new Point2D.Float(x, y);
         this.id = id;
+        this.vitessex = vitessex;
+        this.vitessey = vitessey;
         this.typeMissile = typeMissile;
     }
 
-    public void Bouger(float x,float y){
-        pos.x = x;
-        pos.y = y;
+    public void Bouger(){
+        pos.x = vitessex;
+        pos.y = vitessey;
+    }
+
+    public int getMissType(){
+        return typeMissile;
     }
 
     public Point2D.Float getPos() {

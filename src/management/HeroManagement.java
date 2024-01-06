@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import helper.Sauvegarde;
 import object.Hero;
 import java.awt.Graphics;
-import static helper.Constante.Heros.*;
 import Monster.*;
 
 public class HeroManagement {
@@ -51,7 +50,7 @@ public class HeroManagement {
             for(Monstres m : jouer.getMonsterManagement().getMonstres()){
                 if(m.estVivant()){
                     if(MonstreAPortee(h,m)){
-                        m.damage(1);
+                        jouer.TireSurMonstre(h,m);
                     }else{
 
                     }

@@ -5,8 +5,8 @@ public class Constante {
 
     public static class Missiles{
         public static final int FLECHE = 0;
-        public static final int BOMBE = 1;
-        public static final int GIVRE = 2;
+        public static final int BOMBE = 2;
+        public static final int GIVRE = 1;
 
         public static float getVitesse(int type){
             switch(type){
