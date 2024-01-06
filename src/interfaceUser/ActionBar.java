@@ -70,7 +70,7 @@ public class ActionBar extends Bar{
             graphics.drawImage(jouer.getHeroManagement().getHeroimage()[afficherHero.getHeroType()], 420, 650,50,50, null);
             graphics.setColor(Color.gray);
             graphics.drawString(""+Heros.getNom(afficherHero.getHeroType()), 490, 660);
-            graphics.drawString("ID"+afficherHero.getId(), 490, 675);
+            graphics.drawString("ID:"+afficherHero.getId(), 490, 675);
         }
     }
 
