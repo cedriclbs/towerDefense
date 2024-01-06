@@ -1,10 +1,14 @@
 package main;
 
+import java.util.Objects;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import helper.Sauvegarde;
 import management.ImageManagement;
+import object.Image;
 import scenes.Edit;
 import scenes.Jouer;
 import scenes.Menu;
@@ -27,7 +31,9 @@ public class Game extends JFrame implements Runnable{
     private ImageManagement imageManagement;
 
     public Game(){
-        
+
+        setTitle("TowerDefense");
+        setIconImage(new ImageIcon("ressources/logo.png").getImage());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);

@@ -7,18 +7,24 @@ import interfaceUser.ActionBar;
 import main.Game;
 import management.HeroManagement;
 import management.MonsterManagement;
+import object.Hero;
 import object.Point;
+import static helper.Constante.Images.*;
+
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Jouer extends GameScene implements interfaceScenes {
+
+
     private int[][] niveau;
     private ActionBar bottomBar;
     private int xMoved, yMoved; 
     private MonsterManagement monsterManagement;
     private HeroManagement heroManagement;
     private Point start, end;
+    private Hero choosedHero;
 
 
     public Jouer(Game game) {
@@ -37,12 +43,22 @@ public class Jouer extends GameScene implements interfaceScenes {
         end = nivpoints.get(1);
     }
 
+    public MonsterManagement getMonsterManagement() {
+        return monsterManagement;
+    }
+
+
+    public HeroManagement getHeroManagement() {
+        return heroManagement;
+    }
+    
     public void setNiveau(int[][] niveau) {
         this.niveau=niveau;
     }
     
     public void update(){
         monsterManagement.update();
+        heroManagement.update();
     }
 
     @Override
@@ -50,8 +66,16 @@ public class Jouer extends GameScene implements interfaceScenes {
         ChargerNiveau(graphics);
         bottomBar.affiche(graphics);
         monsterManagement.affiche(graphics);
-        heroManagement.affiche(graphics);;
+        heroManagement.affiche(graphics);
+        afficheChoosedHero(graphics);
     }
+
+    private void afficheChoosedHero(Graphics graphics) {
+        if (choosedHero != null){
+            graphics.drawImage(heroManagement.getHeroimage()[choosedHero.getHeroType()], xMoved, yMoved,game);
+        }
+    }
+
 
     private void ChargerNiveau(Graphics graphics) {
         for(int y=0; y<niveau.length; y++) {
@@ -86,8 +110,28 @@ public class Jouer extends GameScene implements interfaceScenes {
             bottomBar.mouseClicked(x, y);
         }else{
             //monsterManagement.AjouterMonstres(x, y,0);
+            if(this.choosedHero!=null && EstSurHerbe(xMoved,yMoved)){
+                if(getHeroAt(xMoved,yMoved)==null){
+                heroManagement.ajouteHero(choosedHero, xMoved, yMoved);
+                choosedHero = null;
+                }
+            }
+            else{
+                Hero h = getHeroAt(xMoved,yMoved);
+                bottomBar.AffichageHero(h);
+            }
         }
 	}
+
+
+    private Hero getHeroAt(int x, int y) {
+        return heroManagement.getHeroAt(x, y);
+    }
+
+
+    private boolean EstSurHerbe(int x, int y) {
+        return game.getImageManagement().getImage(niveau[y/32][x/32]).getImageType()==HERBE_IMAGE;
+    }
 
 
     @Override
@@ -116,5 +160,10 @@ public class Jouer extends GameScene implements interfaceScenes {
 	@Override
 	public void mouseDragged(int x, int y) {
 
-	} 
+	}
+
+
+    public void setChoosenHero(Hero choosedHero) {
+        this.choosedHero = choosedHero;
+    } 
 }
