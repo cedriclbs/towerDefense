@@ -1,7 +1,5 @@
 package helper;
 
-import object.Image;
-
 public class Constante {
     
     public static class Heros{

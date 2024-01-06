@@ -68,7 +68,7 @@ public class ActionBar extends Bar{
             graphics.drawRect(410, 645, 220, 85);
             graphics.drawRect(420, 650, 50, 50);
             graphics.drawImage(jouer.getHeroManagement().getHeroimage()[afficherHero.getHeroType()], 420, 650,50,50, null);
-            graphics.setColor(Color.gray);
+            graphics.setColor(Color.black);
             graphics.drawString(""+Heros.getNom(afficherHero.getHeroType()), 490, 660);
             graphics.drawString("ID:"+afficherHero.getId(), 490, 675);
         }
