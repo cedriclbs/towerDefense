@@ -57,15 +57,6 @@ public class Constante {
             }
             return 0;
         }
-
-
-
-
-
-
-
-
-
     }
 
     public static class Direction {
@@ -93,13 +84,13 @@ public class Constante {
         public static float getVitesse(int TypeMonstre){
             switch(TypeMonstre){
                 case ARAIGNEE://rhino
-                return 0.3f;
-                case COCHON://monstrevert
-                return 0.45f;
-                case MONSTREVERT://araigne
-                return 0.55f;
-                case RHINO: //cochon
                 return 0.65f;
+                case COCHON://monstrevert
+                return 0.55f;
+                case MONSTREVERT://araigne
+                return 0.45f;
+                case RHINO: //cochon
+                return 0.3f;
             }
             return 0;
         }
