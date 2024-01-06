@@ -83,10 +83,12 @@ public class Constante {
 
 
     public static class Monstres {
-        public static final int ARAIGNEE = 0;
-        public static final int COCHON = 1;
-        public static final int MONSTREVERT = 2;
-        public static final int RHINO = 3;
+
+        public static final int MONSTREVERT = 0;
+        public static final int RHINO = 1;
+        public static final int COCHON = 2;
+        public static final int ARAIGNEE = 3;
+        
 
         public static float getVitesse(int TypeMonstre){
             switch(TypeMonstre){
@@ -104,14 +106,14 @@ public class Constante {
 
         public static int getDefaultHealth(int typedemonstre) {
             switch(typedemonstre){
-                case ARAIGNEE://rhino
-                return 100;
-                case COCHON://monstrevert
-                return 80;
-                case MONSTREVERT://araigne
+                case ARAIGNEE:
                 return 20;
-                case RHINO: //cochon
-                return 60;
+                case COCHON:
+                return 50;
+                case MONSTREVERT:
+                return 80;
+                case RHINO: 
+                return 100;
             }
             return 0;
         }

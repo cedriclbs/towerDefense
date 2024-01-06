@@ -4,25 +4,27 @@ import java.awt.Rectangle;
 import static helper.Constante.Direction.*;
 
 public abstract class Monstres {
-    private float x;
-    private float y;
-    private Rectangle bounds;
-    private int pv;
-    private int id;
-    private int typedemonstre;
-    private int lastdirection;
+    protected float x;
+    protected float y;
+    protected Rectangle bounds;
+    protected int sante;
+    protected int ID;
+    protected int typeDeMonstre;
+    protected int lastDirection;
+    protected int maxSante;
     
-    public Monstres(float x, float y, int id, int typedemonstre) {
+    public Monstres(float x, float y, int id, int typeDeMonstre) {
         this.x = x;
         this.y = y;
-        this.id = id;
-        this.typedemonstre = typedemonstre;
+        this.ID = id;
+        this.typeDeMonstre = typeDeMonstre;
         bounds = new Rectangle((int) x, (int) y, 32, 32);
-        lastdirection = -1;
+        lastDirection = -1;
+        setDefaultHealth();
     }
 
     public void MoveMonster(float vitesse, int direction) {
-        lastdirection = direction;
+        lastDirection = direction;
         switch(direction){
             case LEFT:
                 this.x -= vitesse;
@@ -40,8 +42,13 @@ public abstract class Monstres {
     }
 
 
-    protected void setDefaultHealth () {
-        pv = helper.Constante.Monstres.getDefaultHealth(typedemonstre);
+    private void setDefaultHealth () {
+        sante = helper.Constante.Monstres.getDefaultHealth(typeDeMonstre);
+        maxSante = sante;
+    }
+
+    public float getBarreDeSante () {
+        return (float)sante/(float)maxSante;
     }
 
     public void setPosition(int x, int y) { //pour la position des monstres
@@ -61,20 +68,20 @@ public abstract class Monstres {
         return bounds;
     }
 
-    public int getPv(){
-        return pv;
+    public int getSante(){
+        return sante;
     }
 
-    public int getId(){
-        return id;
+    public int getID(){
+        return ID;
     }
 
     public int getTypeMonstre(){
-        return typedemonstre;
+        return typeDeMonstre;
     }
 
-    public int getLastdirection(){
-        return lastdirection;
+    public int getLastDirection(){
+        return lastDirection;
     }
 
 }

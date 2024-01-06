@@ -1,6 +1,8 @@
 package management;
 
 import scenes.Jouer;
+
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class MonsterManagement {
     private ArrayList<Monstres> monstre = new ArrayList<>();
     //private float vitesse = 0.5f;
     private Point start, end;
+    private int barreDeSanteWidth = 20;
 
     
     public MonsterManagement(Jouer jouer, Point start, Point end){
@@ -74,16 +77,16 @@ public class MonsterManagement {
 
     private void updateMouvementMonstre (Monstres m) {
 
-        if (m.getLastdirection()==-1){
+        if (m.getLastDirection()==-1){
             setNewDirectionMove(m);
         }
 
-        int newX = (int)(m.getX() + getSpeedH(m.getLastdirection(),m.getTypeMonstre()));
-        int newY = (int)(m.getY() + getSpeedW(m.getLastdirection(),m.getTypeMonstre()));
+        int newX = (int)(m.getX() + getSpeedH(m.getLastDirection(),m.getTypeMonstre()));
+        int newY = (int)(m.getY() + getSpeedW(m.getLastDirection(),m.getTypeMonstre()));
 
         if(getImageType(newX, newY) == ROUTE_IMAGE){
             //continue sur la meme dir
-            m.MoveMonster(getVitesse(m.getTypeMonstre()),m.getLastdirection());
+            m.MoveMonster(getVitesse(m.getTypeMonstre()),m.getLastDirection());
         }
         else if(EstFin(m)){
             System.out.println("Vies perdues");
@@ -96,7 +99,7 @@ public class MonsterManagement {
     }
 
     private void setNewDirectionMove(Monstres m) {
-        int dir = m.getLastdirection();
+        int dir = m.getLastDirection();
         int CorX = (int) (m.getX()/32);
         int CorY = (int) (m.getY()/32);
 
@@ -179,7 +182,18 @@ public class MonsterManagement {
     public void affiche(Graphics graphics){
         for(Monstres m: monstre){
            afficheMonstre(m, graphics);
+           afficheBarreDeSante(m, graphics);
         }
+    }
+
+    private void afficheBarreDeSante(Monstres m, Graphics graphics) {
+        graphics.setColor(Color.RED);
+        graphics.fillRect((int)m.getX()+16-getNewBarreWidth(m)/2, (int)m.getY()-10, getNewBarreWidth(m), 3);
+    }
+
+
+    private int getNewBarreWidth (Monstres m){
+        return (int) (this.barreDeSanteWidth*m.getBarreDeSante());
     }
 
     private void afficheMonstre(Monstres m, Graphics graphics) {
