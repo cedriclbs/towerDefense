@@ -1,9 +1,12 @@
 package interfaceUser;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.text.DecimalFormat;
 
 import helper.Constante.Heros;
+import management.WaveManagement;
 import object.Hero;
 import scenes.Jouer;
 
@@ -16,11 +19,13 @@ public class ActionBar extends Bar{
     private Button[] toursButtons;
     private Hero choosedHero;
     private Hero afficherHero;
+    private DecimalFormat decimalFormat;
 
     public ActionBar(int x,int y,int width,int height, Jouer jouer){
         super(x, y, width, height);
         this.jouer = jouer;
         initializeButton();
+        decimalFormat = new DecimalFormat("0.0");
     }
 
     private void initializeButton(){
@@ -44,10 +49,6 @@ public class ActionBar extends Bar{
     private void afficheButton(Graphics graphics){
         menuButton.draw(graphics);
         for (Button button : toursButtons){
-            //button.draw(graphics);
-
-            //graphics.setColor();
-            //graphics.fillRect(button.x, button.y, button.width, button.height);
             graphics.drawImage(jouer.getHeroManagement().getHeroimage()[button.getId()], button.x, button.y, button.width, button.height,null);
             afficheButton(graphics, button);
         }
@@ -58,9 +59,34 @@ public class ActionBar extends Bar{
         graphics.fillRect(x, y, width, height);
         afficheButton(graphics);
         afficheAfficherHero(graphics);
+        afficheInfosWave(graphics);
     }
 
-	private void afficheAfficherHero(Graphics graphics) {
+	private void afficheInfosWave(Graphics graphics) {
+        graphics.setColor(Color.black);
+        graphics.setFont(new Font("LucidaSans", Font.BOLD, 20));
+        afficheTempsRestantWaves(graphics);
+        afficheInfosMonstresVivants(graphics);
+        afficheInfosWaves(graphics);
+        
+    }
+
+    private void afficheInfosWaves(Graphics graphics) {
+        WaveManagement wM = jouer.getWaveManagement();
+        graphics.drawString("Wave " + (wM.getIndexWave()+1) + " / " + wM.getListeWaves().size() , 425, 690);
+    }
+
+    private void afficheInfosMonstresVivants(Graphics graphics) {
+        graphics.drawString("Monstres vivants : " + jouer.getMonsterManagement().getNbMonstresRestants(), 425, 730);
+    }
+
+    private void afficheTempsRestantWaves(Graphics graphics) {
+        if (jouer.getWaveManagement().timerdeWaveOK()){
+            graphics.drawString("Temps restant : " + decimalFormat.format(jouer.getWaveManagement().getTempsRestant()), 425, 660);
+        }
+    }
+
+    private void afficheAfficherHero(Graphics graphics) {
         if(afficherHero != null){
             graphics.setColor(new Color(61,43,40));
             graphics.fillRect(410, 645, 220, 85);
