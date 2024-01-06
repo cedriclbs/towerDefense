@@ -30,6 +30,11 @@ public class Conversion {
         return res;
     }
 
+    public static int getHypDistance(float x1, float y1, float x2, float y2){ //calcul l'hypo entre le h et le m pour voir si le m est à portée du h
+        float diffx = Math.abs(x1-x2);
+        float diffy = Math.abs(y1-y2);
 
+        return (int) Math.hypot(diffx, diffy);
+    }
 
 }

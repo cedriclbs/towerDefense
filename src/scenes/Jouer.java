@@ -1,6 +1,8 @@
 package scenes;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 import helper.Sauvegarde;
 import interfaceUser.ActionBar;
@@ -68,7 +70,14 @@ public class Jouer extends GameScene implements interfaceScenes {
         monsterManagement.affiche(graphics);
         heroManagement.affiche(graphics);
         afficheChoosedHero(graphics);
+        afficheContourHero(graphics);
     }
+
+    private void afficheContourHero(Graphics graphics) {
+        graphics.setColor(Color.BLACK);
+        graphics.drawRect(xMoved, yMoved, 32, 32);
+    }
+
 
     private void afficheChoosedHero(Graphics graphics) {
         if (choosedHero != null){
@@ -152,6 +161,12 @@ public class Jouer extends GameScene implements interfaceScenes {
         }
 	}
 
+    public void keyPressed (KeyEvent e){
+        if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
+            choosedHero = null;
+        }
+    }
+
 	@Override
 	public void mouseReleased(int x, int y) {
         bottomBar.mouseReleased(x, y);
@@ -166,4 +181,5 @@ public class Jouer extends GameScene implements interfaceScenes {
     public void setChoosenHero(Hero choosedHero) {
         this.choosedHero = choosedHero;
     } 
+
 }

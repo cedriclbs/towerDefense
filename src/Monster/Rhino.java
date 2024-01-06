@@ -5,6 +5,7 @@ public class Rhino extends Monstres {
 
     public Rhino(float x, float y, int id) {
         super(x, y, id, RHINO);
+        sante = 100;
     }
     
 }

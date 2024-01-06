@@ -31,7 +31,7 @@ public class GameScreen extends JPanel{
         souris = new MyMouseListener(game);
         addMouseListener(souris);
         addMouseMotionListener(souris);
-        clavier=new KeyboardListener();
+        clavier=new KeyboardListener(game);
         addKeyListener(clavier);
         requestFocus();
     }

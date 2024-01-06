@@ -1,6 +1,26 @@
 package helper;
 
 public class Constante {
+
+
+    public static class Missiles{
+        public static final int FLECHE = 0;
+        public static final int BOMBE = 1;
+        public static final int GIVRE = 2;
+
+        public static float getVitesse(int type){
+            switch(type){
+                case FLECHE:
+                    return 3f;
+                case BOMBE:
+                    return 1f;
+                case GIVRE:
+                    return 2f;
+            }
+            return 0f;
+        }
+        
+    }
     
     public static class Heros{
         
@@ -8,8 +28,8 @@ public class Constante {
         public static final int ARCHER = 1;
         public static final int MAGE = 2;
         
-        public static String getNom(int herotype){
-            switch(herotype){
+        public static String getNom(int typeHeros){
+            switch(typeHeros){
                 case CANNON:
                 return "Cannon";
                 case ARCHER:
@@ -18,6 +38,42 @@ public class Constante {
                 return "Mage";
             }
             return "";
+        }
+
+        public static float getDefaultDegats (int typeHeros){
+            switch(typeHeros){
+                case CANNON:
+                return 30;
+                case ARCHER:
+                return 20;
+                case MAGE:
+                return 10;
+            }
+            return 0;
+        }
+
+        public static float getDefaultPortee (int typeHeros){
+            switch(typeHeros){
+                case CANNON:
+                return 100;
+                case ARCHER:
+                return 100;
+                case MAGE:
+                return 100;
+            }
+            return 0;
+        }
+
+        public static float getDefaultTpsEcoulement (int typeHeros){
+            switch(typeHeros){
+                case CANNON:
+                return 10;
+                case ARCHER:
+                return 10;
+                case MAGE:
+                return 10;
+            }
+            return 0;
         }
     }
 
@@ -36,21 +92,37 @@ public class Constante {
 
 
     public static class Monstres {
-        public static final int ARAIGNEE = 0;
-        public static final int COCHON = 1;
-        public static final int MONSTREVERT = 2;
-        public static final int RHINO = 3;
+
+        public static final int MONSTREVERT = 0;
+        public static final int RHINO = 1;
+        public static final int COCHON = 2;
+        public static final int ARAIGNEE = 3;
+        
 
         public static float getVitesse(int TypeMonstre){
             switch(TypeMonstre){
                 case ARAIGNEE://rhino
-                return 0.3f;
-                case COCHON://monstrevert
-                return 0.45f;
-                case MONSTREVERT://araigne
-                return 0.55f;
-                case RHINO: //cochon
                 return 0.65f;
+                case COCHON://monstrevert
+                return 0.55f;
+                case MONSTREVERT://araigne
+                return 0.45f;
+                case RHINO: //cochon
+                return 0.3f;
+            }
+            return 0;
+        }
+
+        public static int getDefaultHealth(int typedemonstre) {
+            switch(typedemonstre){
+                case ARAIGNEE:
+                return 20;
+                case COCHON:
+                return 50;
+                case MONSTREVERT:
+                return 80;
+                case RHINO: 
+                return 100;
             }
             return 0;
         }

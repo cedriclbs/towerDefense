@@ -3,6 +3,7 @@ package scenes;
 import static helper.Constante.Images.ROUTE_IMAGE;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 import helper.Sauvegarde;
 import interfaceUser.ToolBar;
@@ -119,6 +120,12 @@ public class Edit extends GameScene implements interfaceScenes{
             }
         }
     }
+
+    public void keyPressed(KeyEvent e) {
+		
+	}
+
+
 
     @Override
     public void mouseClicked(int x, int y) {
