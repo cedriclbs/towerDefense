@@ -42,21 +42,27 @@ public class HeroManagement {
     }
 
     public void update(){
-        AttaqueMonstre();
+        for(Hero h: heros){
+            h.update();
+            AttaqueMonstre(h);
+        }
     }
 
-    private void AttaqueMonstre() {
-        for(Hero h: heros){
-            for(Monstres m : jouer.getMonsterManagement().getMonstres()){
-                if(m.estVivant()){
-                    if(MonstreAPortee(h,m)){
+    private void AttaqueMonstre(Hero h) {
+    
+        for(Monstres m : jouer.getMonsterManagement().getMonstres()){
+            if(m.estVivant()){
+                if(MonstreAPortee(h,m)){
+                    if(h.EstFinRecharge()){
                         jouer.TireSurMonstre(h,m);
-                    }else{
-
+                        h.resetRecharge();
                     }
+                }else{
+
                 }
             }
         }
+
     }
 
     private boolean MonstreAPortee(Hero h, Monstres m) {

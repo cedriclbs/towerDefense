@@ -40,12 +40,12 @@ public class Constante {
             return "";
         }
 
-        public static float getDefaultDegats (int typeHeros){
+        public static int getDefaultDegats (int typeHeros){
             switch(typeHeros){
                 case CANNON:
                 return 30;
                 case ARCHER:
-                return 20;
+                return 15;
                 case MAGE:
                 return 10;
             }

@@ -1,8 +1,8 @@
 package object;
 
 public class Hero {
-    private int x,y,id,herotype;
-    private float degats, portee, tpsEcoulement;
+    private int x,y,id,herotype, RecharcheT,degats;
+    private float portee, tpsEcoulement;
 
 
     public Hero(int x, int y, int id, int herotype) {
@@ -13,6 +13,18 @@ public class Hero {
         setDefaultDegats();
         setDefaultPortee();
         setDefaultTpsEcoulement();
+    }
+
+    public void update(){
+        RecharcheT++;
+    }
+
+    public boolean EstFinRecharge() {
+        return RecharcheT >= tpsEcoulement;
+    }
+
+    public void resetRecharge() {
+        RecharcheT = 0;
     }
     
     private void setDefaultDegats() {
@@ -44,11 +56,11 @@ public class Hero {
         return herotype;
     }
 
-    public float getDegats() {
+    public int getDegats() {
         return degats;
     }
 
-    public void setDegats(float degats) {
+    public void setDegats(int degats) {
         this.degats = degats;
     }
 
@@ -67,7 +79,5 @@ public class Hero {
     public void setTpsEcoulement(float tpsEcoulement) {
         this.tpsEcoulement = tpsEcoulement;
     }
-
-
     
 }

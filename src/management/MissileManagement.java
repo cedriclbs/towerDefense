@@ -50,20 +50,40 @@ public class MissileManagement {
         if(h.getY()>m.getY()){
             vitessey *=-1; 
         }
-        System.out.println(h.getX());
-        missiles.add(new Missile(h.getX()+16, h.getY()+16, vitessex, vitessey,missileid++,type));
+        
+        missiles.add(new Missile(h.getX()+16, h.getY()+16, vitessex, vitessey,h.getDegats(),missileid++,type));
     }
 
     public void update(){
         for(Missile miss : missiles){
-            miss.Bouger();
+            if(miss.isActive()){
+                miss.Bouger();
+                if(MissileToucheMonstre(miss)){
+                    miss.setActive(false);
+                }else{
+                    
+                }
+            }
+                
         }
 
     }
 
+    private boolean MissileToucheMonstre(Missile miss) {
+        for(Monstres m : jouer.getMonsterManagement().getMonstres()){
+            if(m.getBounds().contains(miss.getPos())){
+                m.damage(miss.getDegats());
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void affiche(Graphics graphics){
         for(Missile miss : missiles){
-            graphics.drawImage(missileimages[miss.getMissType()], (int)miss.getPos().x, (int)miss.getPos().y, null);
+            if(miss.isActive()){
+                graphics.drawImage(missileimages[miss.getMissileType()], (int)miss.getPos().x, (int)miss.getPos().y, null);
+            }
         }
     }
 

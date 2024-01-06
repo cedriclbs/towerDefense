@@ -40,8 +40,14 @@ public abstract class Monstres {
                 this.y += vitesse;
             break;
         }
+        updateDegats();
     }
 
+
+    private void updateDegats() {
+        bounds.x = (int) x;
+        bounds.y = (int) y;
+    }
 
     private void setDefaultHealth () {
         sante = helper.Constante.Monstres.getDefaultHealth(typeDeMonstre);
@@ -95,5 +101,4 @@ public abstract class Monstres {
     public boolean estVivant(){
         return vivant;
     }
-
 }
