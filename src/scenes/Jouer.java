@@ -111,11 +111,22 @@ public class Jouer extends GameScene implements interfaceScenes {
         }else{
             //monsterManagement.AjouterMonstres(x, y,0);
             if(this.choosedHero!=null && EstSurHerbe(xMoved,yMoved)){
+                if(getHeroAt(xMoved,yMoved)==null){
                 heroManagement.ajouteHero(choosedHero, xMoved, yMoved);
                 choosedHero = null;
+                }
+            }
+            else{
+                Hero h = getHeroAt(xMoved,yMoved);
+                bottomBar.AffichageHero(h);
             }
         }
 	}
+
+
+    private Hero getHeroAt(int x, int y) {
+        return heroManagement.getHeroAt(x, y);
+    }
 
 
     private boolean EstSurHerbe(int x, int y) {

@@ -3,6 +3,7 @@ package interfaceUser;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import helper.Constante.Heros;
 import object.Hero;
 import scenes.Jouer;
 
@@ -14,6 +15,7 @@ public class ActionBar extends Bar{
     private Jouer jouer;
     private Button[] toursButtons;
     private Hero choosedHero;
+    private Hero afficherHero;
 
     public ActionBar(int x,int y,int width,int height, Jouer jouer){
         super(x, y, width, height);
@@ -35,6 +37,10 @@ public class ActionBar extends Bar{
         }
     }
 
+    public void AffichageHero(Hero h){
+        afficherHero = h;
+    }
+
     private void afficheButton(Graphics graphics){
         menuButton.draw(graphics);
         for (Button button : toursButtons){
@@ -51,9 +57,24 @@ public class ActionBar extends Bar{
         graphics.setColor(new Color(55,8,8));
         graphics.fillRect(x, y, width, height);
         afficheButton(graphics);
+        afficheAfficherHero(graphics);
     }
 
-	public void mouseClicked(int x, int y) {
+	private void afficheAfficherHero(Graphics graphics) {
+        if(afficherHero != null){
+            graphics.setColor(new Color(61,43,40));
+            graphics.fillRect(410, 645, 220, 85);
+            graphics.setColor(Color.black);
+            graphics.drawRect(410, 645, 220, 85);
+            graphics.drawRect(420, 650, 50, 50);
+            graphics.drawImage(jouer.getHeroManagement().getHeroimage()[afficherHero.getHeroType()], 420, 650,50,50, null);
+            graphics.setColor(Color.gray);
+            graphics.drawString(""+Heros.getNom(afficherHero.getHeroType()), 490, 660);
+            graphics.drawString("ID"+afficherHero.getId(), 490, 675);
+        }
+    }
+
+    public void mouseClicked(int x, int y) {
 		if (menuButton.getRectangle().contains(x, y)){ 
 			setStates(MENU);
         } else {

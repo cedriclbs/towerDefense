@@ -9,6 +9,18 @@ public class Constante {
         public static final int CANNON = 0;
         public static final int ARCHER = 1;
         public static final int MAGE = 2;
+        
+        public static String getNom(int herotype){
+            switch(herotype){
+                case CANNON:
+                return "Cannon";
+                case ARCHER:
+                return "Archer";
+                case MAGE:
+                return "Mage";
+            }
+            return "";
+        }
     }
 
     public static class Direction {
@@ -45,8 +57,4 @@ public class Constante {
             return 0;
         }
     }
-
-
-
-    
 }

@@ -49,9 +49,15 @@ public class HeroManagement {
         heros.add(new Hero(x,y,acc++,choosedHero.getHeroType()));
     }
 
+    public Hero getHeroAt(int x, int y) {
+        for(Hero h : heros){
+            if(h.getX()==x){
+                if(h.getY()==y){
+                    return h;
+                }
+            }
+        }
+        return null;
+    }
 
-
-
-
-    
 }
