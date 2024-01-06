@@ -2,6 +2,8 @@ package management;
 
 import scenes.Jouer;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import helper.Sauvegarde;
 import object.Hero;
 import java.awt.Graphics;
@@ -10,19 +12,20 @@ import static helper.Constante.Heros.*;
 public class HeroManagement {
     private Jouer jouer;
     private BufferedImage[] heroimage;
-    private Hero hero;
+    private ArrayList<Hero> heros = new ArrayList<>();
+    private int acc = 0;
     
     public HeroManagement(Jouer jouer){
         this.jouer = jouer;
 
         chargerHeroimg();
-        initTower();
     }
 
-    private void initTower() {
-        hero = new Hero(3*32,6*32,0,ARCHER);
+    public BufferedImage[] getHeroimage() {
+        return heroimage;
     }
 
+    
     private void chargerHeroimg() {
         BufferedImage atlas = Sauvegarde.getSpriteAtlas();
         heroimage = new BufferedImage[3];
@@ -32,10 +35,23 @@ public class HeroManagement {
     }
 
     public void affiche(Graphics graphics){
-        graphics.drawImage(heroimage[ARCHER], hero.getX(), hero.getY(), null);
+        for (Hero hero : heros){
+            graphics.drawImage(heroimage[hero.getHeroType()], hero.getX(), hero.getY(), null);
+        }
+        //
     }
 
     public void update(){
         
     }
+
+    public void ajouteHero(Hero choosedHero, int x, int y) {
+        heros.add(new Hero(x,y,acc++,choosedHero.getHeroType()));
+    }
+
+
+
+
+
+    
 }

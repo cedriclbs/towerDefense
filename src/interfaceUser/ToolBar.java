@@ -40,7 +40,7 @@ public class ToolBar  extends Bar{
         int xDepart =110;
         int yDepart = 650;
         int xSortie = (int)(w*1.1f);
-        int i =0;
+        int i=0;
 
         for(Image image : edit.getGame().getImageManagement().Images){
             imageButton.add(new Button(image.getNom(), xDepart + xSortie*i, yDepart, w, h,i));
@@ -78,21 +78,15 @@ public class ToolBar  extends Bar{
         afficheImageChoisies(graphics);
     }
 
+
+
+
+
+
+
     private void afficheButtonSupp(Graphics graphics, Button startButton2, BufferedImage imgStart2) {
         graphics.drawImage(imgStart2, startButton2.x, startButton2.y, startButton2.width, startButton2.height, null);
-        
-        //fonction drawButtonFeedback(g,b)
-        if(startButton2.getMouseOnIt()){
-            graphics.setColor(Color.BLUE);
-        } else {
-            graphics.setColor(Color.BLACK);
-        }
-        graphics.drawRect(startButton2.x, startButton2.y, startButton2.width, startButton2.height);
-
-        if (startButton2.getMousePressed()){
-                graphics.drawRect(startButton2.x+1, startButton2.y+1, startButton2.width-2, startButton2.height-2);
-                graphics.drawRect(startButton2.x+2, startButton2.y+2, startButton2.width-4, startButton2.height-4);
-        }
+        afficheButton(graphics, startButton2);
 
     }
 
@@ -107,20 +101,7 @@ public class ToolBar  extends Bar{
     private void afficheImageButton(Graphics graphics){ 
         for (Button button : imageButton) {
             graphics.drawImage(getButtonImg(button.getId()),button.x, button.y, button.width,button.height,null);
-
-            if(button.getMouseOnIt()) {
-                graphics.setColor(Color.BLUE);
-            } else {
-                graphics.setColor(Color.BLACK);
-            }
-            
-            graphics.drawRect(button.x, button.y, button.width, button.height);
-
-            if (button.getMousePressed()){
-                graphics.drawRect(button.x+1, button.y+1, button.width-2, button.height-2);
-                graphics.drawRect(button.x+2, button.y+2, button.width-4, button.height-4);
-            }
-
+            afficheButton(graphics, button);
         }
 
     }
