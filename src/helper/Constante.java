@@ -45,7 +45,7 @@ public class Constante {
                 case CANNON:
                 return 30;
                 case ARCHER:
-                return 15;
+                return 1;
                 case MAGE:
                 return 10;
             }
