@@ -63,6 +63,13 @@ public abstract class Monstres {
         this.y = y;
     }
 
+    public void tuer() {
+        this.vivant=false;
+        this.sante = 0;
+    }
+
+
+
     public float getX() {
         return x;
     }
@@ -101,4 +108,6 @@ public abstract class Monstres {
     public boolean estVivant(){
         return vivant;
     }
+
+    
 }

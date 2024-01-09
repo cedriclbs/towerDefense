@@ -1,9 +1,15 @@
 package scenes;
 
+import static helper.Constante.Images.HERBE_IMAGE;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
+import Monster.Monstres;
+import management.WaveManagement;
 import helper.Sauvegarde;
 import interfaceUser.ActionBar;
 import main.Game;
@@ -12,13 +18,6 @@ import management.MissileManagement;
 import management.MonsterManagement;
 import object.Hero;
 import object.Point;
-import static helper.Constante.Images.*;
-
-
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
-import Monster.Monstres;
 
 public class Jouer extends GameScene implements interfaceScenes {
 
@@ -31,6 +30,7 @@ public class Jouer extends GameScene implements interfaceScenes {
     private MissileManagement missileManagement;
     private Point start, end;
     private Hero choosedHero;
+    private WaveManagement waveManagement;
 
 
     public Jouer(Game game) {
@@ -40,8 +40,26 @@ public class Jouer extends GameScene implements interfaceScenes {
         monsterManagement = new MonsterManagement(this, start, end);
         heroManagement = new HeroManagement(this);
         missileManagement = new MissileManagement(this);
+        waveManagement = new WaveManagement(this);
 ;    }
 
+    @Override
+    public void render(Graphics graphics) {
+        ChargerNiveau(graphics);
+        bottomBar.affiche(graphics);
+        monsterManagement.affiche(graphics);
+        heroManagement.affiche(graphics);
+        missileManagement.affiche(graphics);
+        
+        afficheChoosedHero(graphics);
+        afficheContourHero(graphics);
+
+        afficheInfosWave(graphics);
+    }
+
+    
+
+    
 
     private void chargerNivParDefault() {
         niveau = Sauvegarde.getNiveau("Nouveau_niveau");
@@ -64,21 +82,69 @@ public class Jouer extends GameScene implements interfaceScenes {
     }
     
     public void update(){
+        waveManagement.update();
+
+        if (monstresMorts()){
+            if (EstEncoreDeWaves()){
+                waveManagement.startWaveManagementTimer();
+                if (tempsFiniPourWave()){
+                    waveManagement.incrementeIndexWave();
+                    monsterManagement.getMonstres().clear();
+                    waveManagement.resetIndexMonstre();
+                }
+            }
+        }
+
+        if(EstTempsPourNvMonstre()){
+            afficheSpawnMonstre();
+        }
         monsterManagement.update();
         heroManagement.update();
         missileManagement.update();
     }
 
-    @Override
-    public void render(Graphics graphics) {
-        ChargerNiveau(graphics);
-        bottomBar.affiche(graphics);
-        monsterManagement.affiche(graphics);
-        heroManagement.affiche(graphics);
-        missileManagement.affiche(graphics);
+    private boolean tempsFiniPourWave() {
+        return waveManagement.tempsFiniPourWave();
+    }
+
+
+    private boolean EstEncoreDeWaves() {
+        return waveManagement.EstEncoreDeWaves();
+    }
+
+    private boolean monstresMorts() {
+
+        if(waveManagement.placeDispoPourMonstre()){
+            return false;
+        }
+
+        for (Monstres m : monsterManagement.getMonstres()){
+            if(m.estVivant()){
+                return false;
+            }
+
+        }
+        return true;
+    }
+
+
+    private void afficheInfosWave(Graphics graphics) {
         
-        afficheChoosedHero(graphics);
-        afficheContourHero(graphics);
+    }
+
+    
+
+    private void afficheSpawnMonstre() {
+        monsterManagement.afficheSpawnMonstre(waveManagement.getMonstreSuivant());
+    }
+
+    private boolean EstTempsPourNvMonstre() {
+        if(this.waveManagement.EstTempsPourNvMonstre()){
+            if (this.waveManagement.placeDispoPourMonstre()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void afficheContourHero(Graphics graphics) {
@@ -129,8 +195,8 @@ public class Jouer extends GameScene implements interfaceScenes {
             //monsterManagement.AjouterMonstres(x, y,0);
             if(this.choosedHero!=null && EstSurHerbe(xMoved,yMoved)){
                 if(getHeroAt(xMoved,yMoved)==null){
-                heroManagement.ajouteHero(choosedHero, xMoved, yMoved);
-                choosedHero = null;
+                    heroManagement.ajouteHero(choosedHero, xMoved, yMoved);
+                    choosedHero = null;
                 }
             }
             else{
@@ -140,6 +206,14 @@ public class Jouer extends GameScene implements interfaceScenes {
         }
 	}
 
+    public WaveManagement getWaveManagement() {
+        return waveManagement;
+    }
+
+
+    public void setWaveManagement(WaveManagement waveManagement) {
+        this.waveManagement = waveManagement;
+    }
 
     private Hero getHeroAt(int x, int y) {
         return heroManagement.getHeroAt(x, y);

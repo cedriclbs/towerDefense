@@ -31,10 +31,10 @@ public class MonsterManagement {
         this.start = start;
         this.end=end;
         
-        AjouterMonstres(ARAIGNEE);
-        AjouterMonstres(COCHON);
-        AjouterMonstres(MONSTREVERT);
-        AjouterMonstres(RHINO);
+        // AjouterMonstres(ARAIGNEE);
+        // AjouterMonstres(COCHON);
+        // AjouterMonstres(MONSTREVERT);
+        // AjouterMonstres(RHINO);
 
         ChargerMonstresimg();
     }
@@ -69,6 +69,12 @@ public class MonsterManagement {
     }
 
     public void update(){
+
+
+        
+        
+
+
         for(Monstres m: monstre){
             if(m.estVivant()){
                 updateMouvementMonstre(m);
@@ -76,6 +82,9 @@ public class MonsterManagement {
         }
 
     }
+
+
+    
 
     private void updateMouvementMonstre (Monstres m) {
 
@@ -91,7 +100,8 @@ public class MonsterManagement {
             m.MoveMonster(getVitesse(m.getTypeMonstre()),m.getLastDirection());
         }
         else if(EstFin(m)){
-            System.out.println("Vies perdues");
+            m.tuer();
+            System.out.println("Une vie de perdue");
         }
         else{
             //cherche une new dir
@@ -206,5 +216,19 @@ public class MonsterManagement {
 
     public ArrayList<Monstres> getMonstres(){
         return monstre;
+    }
+
+    public void afficheSpawnMonstre(int monstreSuivant) {
+        AjouterMonstres(monstreSuivant);
+    }
+
+    public int getNbMonstresRestants() {
+        int acc = 0;
+        for (Monstres m : monstre){
+            if (m.estVivant()){
+                acc++;
+            }
+        }
+        return acc;
     }
 }
