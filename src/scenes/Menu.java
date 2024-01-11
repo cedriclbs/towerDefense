@@ -3,7 +3,6 @@ package scenes;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -20,13 +19,11 @@ import interfaceUser.Button;
 import main.Game;
 import main.States;
 import scenes.Jouer.Difficulty;
-import scenes.Jouer.*;
 
 import static main.States.*;
 
 public class Menu extends GameScene implements interfaceScenes {
 
-    private Random random;
     private Button jouerButton;
     private Button quitterButton;
     private Button niveauButton;
@@ -36,8 +33,8 @@ public class Menu extends GameScene implements interfaceScenes {
 
     
     public Menu(Game game,Jouer jouer) {
+
         super(game);
-        random = new Random();
         this.jouer = jouer;
         int widthForText = 150;
 		int heightForText = widthForText / 3;
@@ -46,7 +43,7 @@ public class Menu extends GameScene implements interfaceScenes {
 		int yOffset = 100;
 
         jouerButton = new Button("Jouer", x, y, widthForText, heightForText);
-        editButton = new Button("Edit", x, y+yOffset,widthForText,heightForText); 
+        editButton = new Button("Editer", x, y+yOffset,widthForText,heightForText); 
         niveauButton = new Button("Niveau",x, y + yOffset*2, widthForText, heightForText);
         quitterButton = new Button("Quitter",x, y + yOffset * 3, widthForText, heightForText);
     }
@@ -69,19 +66,6 @@ public class Menu extends GameScene implements interfaceScenes {
             }
         }
          */
-    }
-
-
-    private int getRndInt(){
-        return random.nextInt(100);
-    }
-    
-    private Color getRndColor(){
-        int r = random.nextInt(256);
-        int g = random.nextInt(256);
-        int b = random.nextInt(256);
-
-        return new Color(r, g, b);
     }
 
     @Override

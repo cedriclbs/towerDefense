@@ -74,8 +74,6 @@ public class Jouer extends GameScene implements interfaceScenes {
         
     }
 
-
-
     @Override
     public void render(Graphics graphics) {
         ChargerNiveau(graphics);
