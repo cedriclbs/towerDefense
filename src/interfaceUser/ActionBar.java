@@ -140,7 +140,7 @@ public class ActionBar extends Bar{
     private void afficheInfosWaves(Graphics graphics) {
         WaveManagement wM = jouer.getWaveManagement();
         if(jouer.getCurrentDifficulty() == Difficulty.MARATHON){
-            graphics.drawString("Vagues " + "infinie !", 410, 750);
+            graphics.drawString("Vagues " + "infinies !", 410, 750);
         }else{
             graphics.drawString("Vagues : " + (wM.getIndexWave()+1) + " / " + wM.getListeWaves().size() , 410, 750);
         }
