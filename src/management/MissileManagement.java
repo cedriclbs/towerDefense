@@ -83,9 +83,11 @@ public class MissileManagement {
 
     private boolean MissileToucheMonstre(Missile miss) {
         for(Monstres m : jouer.getMonsterManagement().getMonstres()){
-            if(m.getBounds().contains(miss.getPos())){
-                m.damage(miss.getDegats());
-                return true;
+            if(m.estVivant()){
+                if(m.getBounds().contains(miss.getPos())){
+                    m.damage(miss.getDegats());
+                    return true;
+                }
             }
         }
         return false;

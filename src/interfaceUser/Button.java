@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import helper.Sauvegarde;
-
 public class Button {
     
     String buttonName;
