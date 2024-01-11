@@ -5,6 +5,9 @@ import java.util.Arrays;
 
 import action.Wave;
 import scenes.Jouer;
+import scenes.Jouer.Difficulty;
+
+import java.util.Random;
 
 public class WaveManagement {
     
@@ -18,15 +21,64 @@ public class WaveManagement {
     private int waveLimite = 60*5;
     private int wave = 0;
 
-    public WaveManagement (Jouer jouer){
+    private Random random;
+    private Random random2;
+
+    public WaveManagement (Jouer jouer,Difficulty difficulty){
         this.jouer=jouer;
-        initWave();
+        this.random = new Random();
+        this.random2 = new Random();
+        initWave(difficulty);
     }
 
-    private void initWave() {
-        listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,0,0,0,0,0,0,0,1))));
-        listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(2,0,0,0,0,0,0,0,0,1))));
+    private void initWave(Difficulty difficulty) {
+       
+        if(difficulty== Jouer.Difficulty.FACILE){
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,0,0,0,0,0,0,0,1))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(2,0,0,0,0,0,0,0,0,1))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndIntNull(),getRndInt()))));
 
+        }
+        if(difficulty== Jouer.Difficulty.MOYEN){
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(2,0,0,0,0,0,0,0,0,1))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,0,0,0,0,2,0,0,1))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,0,0,0,0,2,0,0,1))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt()))));
+
+        }
+        if(difficulty== Jouer.Difficulty.DIFFICILE){
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(2,0,0,0,0,0,0,0,0,1))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,0,0,0,0,2,0,0,1))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,0,0,0,0,2,0,0,1))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(getRndIntNull(),0,getRndIntNull(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndInt(),getRndInt(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(getRndIntNull(),0,getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(getRndIntNull(),0,getRndIntNull(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(getRndIntNull(),getRndIntNull(),getRndInt(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndInt(),getRndInt(),getRndIntNull()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(getRndIntNull(),0,getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(getRndIntNull(),getRndIntNull(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(getRndIntNull(),0,getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt()))));
+        }
+
+    }
+
+    private int getRndInt(){
+        return random.nextInt(4);
+    }
+    private int getRndIntNull(){
+        return random.nextInt(2);
     }
 
 
@@ -39,7 +91,25 @@ public class WaveManagement {
             if(wave >= waveLimite){
                 waveTimerFini = true;
             }
-        }   
+        }  
+        if (jouer.getCurrentDifficulty() == Jouer.Difficulty.MARATHON && besoinDePlusDeVagues()) {
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0,0,getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt()))));
+        } 
+    }
+
+    private boolean besoinDePlusDeVagues() {
+        return indexWave >= listeWaves.size() - 1;
+    }
+
+    public void reset(Difficulty difficulty){
+        listeWaves.clear();
+        initWave(difficulty);
+        indexMonstre = 0;
+        indexWave =0;
+        waveTimer = false;
+        waveTimerFini = false;
+        wave = 0;
+        spawn = spawnLimite;
     }
 
 

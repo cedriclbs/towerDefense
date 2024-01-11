@@ -54,6 +54,11 @@ public class MissileManagement {
         missiles.add(new Missile(h.getX()+16, h.getY()+16, vitessex, vitessey,h.getDegats(),missileid++,type));
     }
 
+    public void reset(){
+        missiles.clear();
+        missileid = 0;
+    }
+
     public void update(){
         for(Missile miss : missiles){
             if(miss.isActive()){

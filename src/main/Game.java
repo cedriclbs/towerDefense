@@ -12,7 +12,7 @@ import object.Image;
 import scenes.Edit;
 import scenes.Jouer;
 import scenes.Menu;
-import scenes.Parametres;
+import scenes.Niveau;
 
 public class Game extends JFrame implements Runnable{
     private GameScreen gameScreen;
@@ -26,7 +26,7 @@ public class Game extends JFrame implements Runnable{
     
     private Jouer jouer;
     private Menu menu;
-    private Parametres parametres;
+    private Niveau niveau;
     private Edit edit;
     private ImageManagement imageManagement;
 
@@ -35,12 +35,12 @@ public class Game extends JFrame implements Runnable{
         setTitle("TowerDefense");
         setIconImage(new ImageIcon("ressources/logo.png").getImage());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
         setResizable(false);
         aideConstructeur();
         creationNivParDefault();
         add(gameScreen);
         pack();
+        setLocationRelativeTo(null);
         setVisible(true);
 
     }
@@ -59,8 +59,8 @@ public class Game extends JFrame implements Runnable{
         render = new Render(this);
         gameScreen = new GameScreen(this);
         jouer = new Jouer(this);
-        menu = new Menu(this);
-        parametres = new Parametres(this);
+        menu = new Menu(this,jouer);
+        niveau = new Niveau(this);
         edit = new Edit(this);
         
     }
@@ -74,7 +74,7 @@ public class Game extends JFrame implements Runnable{
             case MENU:
             break;
 
-            case PARAMETRES:
+            case NIVEAU:
             break;
             
             case EDITER:
@@ -94,8 +94,8 @@ public class Game extends JFrame implements Runnable{
     public Menu getMenu () {
         return this.menu;
     }
-    public Parametres getParametres () {
-        return this.parametres;
+    public Niveau getParametres () {
+        return this.niveau;
     }
     public Edit getEdit(){
         return edit;

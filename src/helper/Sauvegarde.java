@@ -29,6 +29,34 @@ public class Sauvegarde {
         return image;
     }
     
+	public static BufferedImage getFond(){
+
+        BufferedImage image = null;
+		InputStream is = Sauvegarde.class.getClassLoader().getResourceAsStream("FondTD.png");
+        
+		try {
+			image = ImageIO.read(is);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
+        return image;
+    }
+	
+	public static BufferedImage getFondBut(){
+
+        BufferedImage image = null;
+		InputStream is = Sauvegarde.class.getClassLoader().getResourceAsStream("FondBut.png");
+        
+		try {
+			image = ImageIO.read(is);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
+        return image;
+    }
+
 	public static void CreationOfFile(){
 		File txtFile = new File("ressources/txt" + File.separator + "testTestFile.txt");
 		

@@ -4,7 +4,7 @@ public enum States {
     
     JOUER, 
     MENU, 
-    PARAMETRES,
+    NIVEAU,
     EDITER;
     
 

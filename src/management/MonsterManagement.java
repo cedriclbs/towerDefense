@@ -68,12 +68,11 @@ public class MonsterManagement {
         }
     }
 
+    public void reset(){
+        monstre.clear();
+    }
+
     public void update(){
-
-
-        
-        
-
 
         for(Monstres m: monstre){
             if(m.estVivant()){

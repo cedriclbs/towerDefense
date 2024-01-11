@@ -31,7 +31,7 @@ public class MyMouseListener implements MouseMotionListener, MouseListener {
                 case MENU:
                     game.getMenu().mouseClicked(e.getX(),e.getY());
                     break;
-                case PARAMETRES:
+                case NIVEAU:
                     game.getParametres().mouseClicked(e.getX(),e.getY());
                     break;
                 case EDITER: 
@@ -53,7 +53,7 @@ public class MyMouseListener implements MouseMotionListener, MouseListener {
             case MENU:
                 game.getMenu().mousePressed(e.getX(),e.getY());
                 break;
-            case PARAMETRES:
+            case NIVEAU:
                 game.getParametres().mousePressed(e.getX(), e.getY());
                 break;
             case EDITER: 
@@ -74,7 +74,7 @@ public class MyMouseListener implements MouseMotionListener, MouseListener {
             case MENU:
                 game.getMenu().mouseReleased(e.getX(),e.getY());
                 break;
-            case PARAMETRES:
+            case NIVEAU:
                 game.getParametres().mouseReleased(e.getX(),e.getY());
                 break;
             case EDITER: 
@@ -105,7 +105,7 @@ public class MyMouseListener implements MouseMotionListener, MouseListener {
             case MENU:
                 game.getMenu().mouseDragged(e.getX(),e.getY());
                 break;
-            case PARAMETRES:
+            case NIVEAU:
                 game.getParametres().mouseDragged(e.getX(),e.getY());
                 break;
             case EDITER: 
@@ -126,7 +126,7 @@ public class MyMouseListener implements MouseMotionListener, MouseListener {
             case MENU:
                 game.getMenu().mouseMoved(e.getX(),e.getY());
                 break;
-            case PARAMETRES:
+            case NIVEAU:
                 game.getParametres().mouseMoved(e.getX(),e.getY());
                 break;
             case EDITER: 

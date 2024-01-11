@@ -9,6 +9,8 @@ import helper.Constante.Heros;
 import management.WaveManagement;
 import object.Hero;
 import scenes.Jouer;
+import scenes.NiveauFacile;
+import scenes.Jouer.Difficulty;
 
 import static main.States.*;
 
@@ -16,6 +18,7 @@ public class ActionBar extends Bar{
     
     private Button menuButton;
     private Jouer jouer;
+    private NiveauFacile niveauFacile;
     private Button[] toursButtons;
     private Hero choosedHero;
     private Hero afficherHero;
@@ -28,6 +31,17 @@ public class ActionBar extends Bar{
         decimalFormat = new DecimalFormat("0.0");
     }
 
+    // public ActionBar(int x, int y, int width, int height, NiveauFacile niveauFacile) {
+    //     super(x, y, width, height);
+    //     this.niveauFacile = niveauFacile;
+    //     initializeButton();
+    //     decimalFormat = new DecimalFormat("0.0");
+    // }
+
+    public void resetAll(){
+        afficherHero = null;
+        choosedHero = null;
+    }
     private void initializeButton(){
         menuButton = new Button("Menu", 2, 642, 100, 30);
         toursButtons = new Button[3];
@@ -73,7 +87,11 @@ public class ActionBar extends Bar{
 
     private void afficheInfosWaves(Graphics graphics) {
         WaveManagement wM = jouer.getWaveManagement();
-        graphics.drawString("Wave " + (wM.getIndexWave()+1) + " / " + wM.getListeWaves().size() , 425, 690);
+        if(jouer.getCurrentDifficulty() == Difficulty.MARATHON){
+            graphics.drawString("Vagues :" + "Infinie !", 425, 690);
+        }else{
+            graphics.drawString("Vagues : " + (wM.getIndexWave()+1) + " / " + wM.getListeWaves().size() , 425, 690);
+        }
     }
 
     private void afficheInfosMonstresVivants(Graphics graphics) {
