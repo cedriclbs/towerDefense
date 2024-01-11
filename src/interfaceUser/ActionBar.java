@@ -44,14 +44,7 @@ public class ActionBar extends Bar{
     //     decimalFormat = new DecimalFormat("0.0");
     // }
 
-    public void resetAll(){
-        afficherHero = null;
-        choosedHero = null;
-        montrePrixH = false;
-        heroPrixType = 0;
-        vies = 20;
-        or = 90;
-    }
+    
     private void initializeButton(){
         menuButton = new Button("Menu", 2, 642, 100, 30);
         toursButtons = new Button[3];
@@ -70,6 +63,16 @@ public class ActionBar extends Bar{
         afficherHero = h;
     }
 
+    public void resetAll(){
+        afficherHero = null;
+        choosedHero = null;
+        montrePrixH = false;
+        heroPrixType = 0;
+        vies = 20;
+        or = 90;
+    }
+
+    
     private void afficheButton(Graphics graphics){
         menuButton.draw(graphics);
         for (Button button : toursButtons){
