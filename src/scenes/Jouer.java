@@ -31,7 +31,11 @@ public class Jouer extends GameScene implements interfaceScenes {
     private Point start, end;
     private Hero choosedHero;
     private WaveManagement waveManagement;
-
+    private Difficulty currentDifficulty = Difficulty.FACILE;
+    
+    public enum Difficulty {
+        FACILE, MOYEN, DIFFICILE, MARATHON;
+    }
 
     public Jouer(Game game) {
         super(game);
@@ -40,8 +44,37 @@ public class Jouer extends GameScene implements interfaceScenes {
         monsterManagement = new MonsterManagement(this, start, end);
         heroManagement = new HeroManagement(this);
         missileManagement = new MissileManagement(this);
-        waveManagement = new WaveManagement(this);
-;    }
+        waveManagement = new WaveManagement(this,currentDifficulty);
+;   }
+
+    public void updateWaveManagement() {
+        this.waveManagement = new WaveManagement(this, currentDifficulty);
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.currentDifficulty = difficulty;
+    }
+
+    public Difficulty getCurrentDifficulty() {
+        return this.currentDifficulty;
+    }
+
+    public void reset(Difficulty difficulty){
+        chargerNivParDefault();
+
+        xMoved = 0;
+        yMoved = 0;
+        choosedHero = null;
+
+        heroManagement.reset();
+        monsterManagement.reset();
+        missileManagement.reset();
+        waveManagement.reset(difficulty);
+        bottomBar.resetAll();
+        
+    }
+
+
 
     @Override
     public void render(Graphics graphics) {

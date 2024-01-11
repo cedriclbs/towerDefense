@@ -48,6 +48,12 @@ public class HeroManagement {
         }
     }
 
+    public void reset(){
+        heros.clear();
+        acc = 0; //si probleme ici
+       
+    }
+
     private void AttaqueMonstre(Hero h) {
     
         for(Monstres m : jouer.getMonsterManagement().getMonstres()){
