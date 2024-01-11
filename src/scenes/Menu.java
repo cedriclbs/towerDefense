@@ -37,10 +37,10 @@ public class Menu extends GameScene implements interfaceScenes {
         super(game);
         this.jouer = jouer;
         int widthForText = 150;
-		int heightForText = widthForText / 3;
 		int x = 640 / 2 - widthForText / 2;
 		int y = 260;
 		int yOffset = 100;
+		int heightForText = widthForText / 3;
 
         jouerButton = new Button("Jouer", x, y, widthForText, heightForText);
         editButton = new Button("Editer", x, y+yOffset,widthForText,heightForText); 
@@ -57,15 +57,6 @@ public class Menu extends GameScene implements interfaceScenes {
         editButton.draw(graphics);
         quitterButton.draw(graphics);
         niveauButton.draw(graphics);
-
-
-        /*
-         * for(int x=0; x<20 ; x++){
-            for(int y=0; y<20 ; y++){
-                graphics.drawImage(sprites.get(getRndInt()), x*32, y*32, null);
-            }
-        }
-         */
     }
 
     @Override

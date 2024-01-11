@@ -1,6 +1,7 @@
 package scenes;
 
 import static helper.Constante.Images.HERBE_IMAGE;
+import static main.States.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -85,8 +86,6 @@ public class Jouer extends GameScene implements interfaceScenes {
         
         afficheChoosedHero(graphics);
         afficheContourHero(graphics);
-
-        afficheInfosWave(graphics);
     }
 
     private void chargerNivParDefault() {
@@ -125,6 +124,8 @@ public class Jouer extends GameScene implements interfaceScenes {
                     monsterManagement.getMonstres().clear();
                     waveManagement.resetIndexMonstre();
                 }
+            } else {
+                setStates(GAMEOVER);
             }
         }
 
@@ -161,9 +162,6 @@ public class Jouer extends GameScene implements interfaceScenes {
     }
 
 
-    private void afficheInfosWave(Graphics graphics) {
-        
-    }
 
     private void afficheSpawnMonstre() {
         monsterManagement.afficheSpawnMonstre(waveManagement.getMonstreSuivant());
@@ -307,6 +305,10 @@ public class Jouer extends GameScene implements interfaceScenes {
 
     public void TireSurMonstre(Hero h, Monstres m) {
         missileManagement.NouveauMissile(h, m);
+    }
+
+    public void enleverUneVie() {
+        bottomBar.enleverUneVie();
     } 
 
 }

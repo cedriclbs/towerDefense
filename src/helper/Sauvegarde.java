@@ -57,6 +57,23 @@ public class Sauvegarde {
         return image;
     }
 
+	public static BufferedImage getFondGameOver(){
+
+        BufferedImage image = null;
+		InputStream is = Sauvegarde.class.getClassLoader().getResourceAsStream("FondGameOver.png");
+        
+		try {
+			image = ImageIO.read(is);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
+        return image;
+    }
+
+
+
+
 	public static void CreationOfFile(){
 		File txtFile = new File("ressources/txt" + File.separator + "testTestFile.txt");
 		

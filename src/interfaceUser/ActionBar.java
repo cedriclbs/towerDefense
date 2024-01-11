@@ -15,6 +15,10 @@ import static main.States.*;
 
 public class ActionBar extends Bar{
     
+    public int getVies() {
+        return vies;
+    }
+
     private Button menuButton;
     private Jouer jouer;
     private Button[] toursButtons;
@@ -24,6 +28,7 @@ public class ActionBar extends Bar{
     private int or = 90;
     private boolean montrePrixH;
     private int heroPrixType;
+    private int vies = 20;
 
     public ActionBar(int x,int y,int width,int height, Jouer jouer){
         super(x, y, width, height);
@@ -44,7 +49,8 @@ public class ActionBar extends Bar{
         choosedHero = null;
         montrePrixH = false;
         heroPrixType = 0;
-        or = 100;
+        or = 90;
+        vies = 20;
     }
     private void initializeButton(){
         menuButton = new Button("Menu", 2, 642, 100, 30);
@@ -78,13 +84,19 @@ public class ActionBar extends Bar{
         afficheButton(graphics);
         afficheAfficherHero(graphics);
         afficheInfosWave(graphics);
+        afficheViesRestantes(graphics);
         afficheNbOr(graphics);
         if(montrePrixH){
             afficherPrixHero(graphics);
         }
     }
 
-	private void afficherPrixHero(Graphics graphics) {
+	private void afficheViesRestantes(Graphics graphics) {
+        graphics.setColor(Color.BLACK);
+        graphics.drawString("Vies restantes : " + vies, 110, 750);
+    }
+
+    private void afficherPrixHero(Graphics graphics) {
         graphics.setColor(new Color(61,43,40));
         graphics.fillRect(280, 650, 120, 50);
         graphics.setColor(Color.black);
@@ -128,7 +140,7 @@ public class ActionBar extends Bar{
     private void afficheInfosWaves(Graphics graphics) {
         WaveManagement wM = jouer.getWaveManagement();
         if(jouer.getCurrentDifficulty() == Difficulty.MARATHON){
-            graphics.drawString("Vagues :" + "Infinie !", 410, 750);
+            graphics.drawString("Vagues " + "infinie !", 410, 750);
         }else{
             graphics.drawString("Vagues : " + (wM.getIndexWave()+1) + " / " + wM.getListeWaves().size() , 410, 750);
         }
@@ -140,7 +152,7 @@ public class ActionBar extends Bar{
 
     private void afficheTempsRestantWaves(Graphics graphics) {
         if (jouer.getWaveManagement().timerdeWaveOK()){
-            graphics.drawString("Temps restant : " + decimalFormat.format(jouer.getWaveManagement().getTempsRestant()), 425, 660);
+            graphics.drawString("Temps restant : " + decimalFormat.format(jouer.getWaveManagement().getTempsRestant()), 110, 790);
         }
     }
 
@@ -154,7 +166,8 @@ public class ActionBar extends Bar{
             graphics.drawImage(jouer.getHeroManagement().getHeroimage()[afficherHero.getHeroType()], 420, 650,50,50, null);
             graphics.setColor(Color.black);
             graphics.drawString(""+Heros.getNom(afficherHero.getHeroType()), 490, 660);
-            graphics.drawString("ID:"+afficherHero.getId(), 490, 675);
+            graphics.drawString("ID : " + afficherHero.getId(), 490, 680);
+            graphics.drawString("Portée : "+(int)afficherHero.getPortee(), 490, 700);
             afficheContoursHeroChoisis(graphics);
             affichePorteeHero(graphics);
         }
@@ -250,5 +263,13 @@ public class ActionBar extends Bar{
     public void ajouteOr(int orMonstres) {
         this.or += orMonstres;
     }
+
+    public void enleverUneVie () {
+        vies--;
+        if (vies <= 0){
+            setStates(GAMEOVER);
+        }
+    }
+
 
 }

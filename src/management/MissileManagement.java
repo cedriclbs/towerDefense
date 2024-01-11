@@ -72,13 +72,20 @@ public class MissileManagement {
                 miss.Bouger();
                 if(MissileToucheMonstre(miss)){
                     miss.setActive(false);
-                }else{
-                    
+                }else if (estEnDehorsDesLimites(miss)){
+                    miss.setActive(false);
                 }
             }
                 
         }
 
+    }
+
+    private boolean estEnDehorsDesLimites(Missile miss) {
+        if (miss.getPos().x >= 0 && miss.getPos().y >=0 && miss.getPos().x <= 640 && miss.getPos().y <=640){
+            return false;
+        }
+        return true;
     }
 
     private boolean MissileToucheMonstre(Missile miss) {
