@@ -21,14 +21,14 @@ Il y a deux façons de lancer le jeu;
 # Compilation
 
     Exécutez cette ligne de commmande dans votre terminal dans le répertoire du projet towerd/
-        javac -d bin -cp src src/main/Game.java
+            javac -d bin -cp src src/main/Game.java
 
 
 
 # Exécution
     
     Toujours dans le même répertoire, veuillez exécutez cette ligne de commmande dans votre terminal :
-        java bin/Game
+        java -cp bin main.Game
 
 
 
