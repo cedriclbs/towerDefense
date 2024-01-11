@@ -93,22 +93,22 @@ public class Constante {
 
     public static class Monstres {
 
-        public static final int MONSTREVERT = 0;
-        public static final int RHINO = 1;
-        public static final int COCHON = 2;
-        public static final int ARAIGNEE = 3;
+        public static final int MONSTREVERT = 0; //rhino
+        public static final int RHINO = 1; // monstrevert
+        public static final int COCHON = 2; // araignée 
+        public static final int ARAIGNEE = 3; //cochon
         
 
         public static float getVitesse(int TypeMonstre){
             switch(TypeMonstre){
-                case ARAIGNEE://rhino
+                case ARAIGNEE://cochon
                 return 0.65f;
-                case COCHON://monstrevert
-                return 0.55f;
-                case MONSTREVERT://araigne
+                case COCHON://araignée
                 return 0.45f;
-                case RHINO: //cochon
-                return 0.3f;
+                case MONSTREVERT://Rhino
+                return 0.35f;
+                case RHINO: //Monstre vert
+                return 0.2f;
             }
             return 0;
         }
