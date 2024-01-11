@@ -3,6 +3,8 @@ package management;
 import scenes.Jouer;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.awt.Graphics2D;
+
 
 import Monster.Monstres;
 import helper.Sauvegarde;
@@ -36,11 +38,11 @@ public class MissileManagement {
 
     public void NouveauMissile(Hero h, Monstres m){
         int type = getMissileType(h);
-        int distancex = (int)Math.abs(h.getX() - m.getX());
-        int distancey = (int)Math.abs(h.getY() - m.getY());
-        int distanceTotale = distancex + distancey;
+        int distancex = (int)(h.getX() - m.getX());
+        int distancey = (int)(h.getY() - m.getY());
+        int distanceTotale = Math.abs(distancex) + Math.abs(distancey);
         
-        float xPer = (float) distancex/distanceTotale;
+        float xPer = (float) Math.abs(distancex)/distanceTotale;
         float vitessex  = xPer * helper.Constante.Missiles.getVitesse(type);
         float vitessey = helper.Constante.Missiles.getVitesse(type)-vitessex;
         
@@ -50,8 +52,13 @@ public class MissileManagement {
         if(h.getY()>m.getY()){
             vitessey *=-1; 
         }
-        
-        missiles.add(new Missile(h.getX()+16, h.getY()+16, vitessex, vitessey,h.getDegats(),missileid++,type));
+        float arcValue = (float) Math.atan(distancey / (float) distancex);
+		float rotate = (float) Math.toDegrees(arcValue);
+
+        if(distancex<0){
+            rotate +=180;
+        }
+        missiles.add(new Missile(h.getX()+16, h.getY()+16, vitessex, vitessey,h.getDegats(),rotate,missileid++,type));
     }
 
     public void reset(){
@@ -85,11 +92,18 @@ public class MissileManagement {
     }
 
     public void affiche(Graphics graphics){
+        Graphics2D g2d = (Graphics2D)graphics;
+        
         for(Missile miss : missiles){
             if(miss.isActive()){
-                graphics.drawImage(missileimages[miss.getMissileType()], (int)miss.getPos().x, (int)miss.getPos().y, null);
+                g2d.translate(miss.getPos().x,miss.getPos().y );
+                g2d.rotate(Math.toRadians(miss.getRotation()));
+                g2d.drawImage(missileimages[miss.getMissileType()], -16, -16, null);
+                g2d.rotate(-Math.toRadians(miss.getRotation()));
+                g2d.translate(-miss.getPos().x,-miss.getPos().y );
             }
         }
+       
     }
 
     private int getMissileType(Hero h) {

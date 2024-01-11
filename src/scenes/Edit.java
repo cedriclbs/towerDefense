@@ -12,7 +12,6 @@ import object.Image;
 import object.Point;
 
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Edit extends GameScene implements interfaceScenes{
