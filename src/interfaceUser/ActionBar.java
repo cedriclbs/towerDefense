@@ -37,12 +37,6 @@ public class ActionBar extends Bar{
         decimalFormat = new DecimalFormat("0.0");
     }
 
-    // public ActionBar(int x, int y, int width, int height, NiveauFacile niveauFacile) {
-    //     super(x, y, width, height);
-    //     this.niveauFacile = niveauFacile;
-    //     initializeButton();
-    //     decimalFormat = new DecimalFormat("0.0");
-    // }
     private void initializeButton(){
         menuButton = new Button("Menu", 2, 642, 100, 30);
         toursButtons = new Button[3];
