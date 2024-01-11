@@ -2,8 +2,6 @@ package scenes;
 
 import java.awt.Graphics;
 
-import java.awt.event.MouseEvent;
-
 public interface interfaceScenes {
     
     public void mouseClicked (int x, int y);

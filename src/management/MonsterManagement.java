@@ -20,7 +20,6 @@ public class MonsterManagement {
     private Jouer jouer;
     private BufferedImage[] monstreimg;
     private ArrayList<Monstres> monstre = new ArrayList<>();
-    //private float vitesse = 0.5f;
     private Point start, end;
     private int barreDeSanteWidth = 20;
 
@@ -30,11 +29,6 @@ public class MonsterManagement {
         monstreimg = new BufferedImage[4];
         this.start = start;
         this.end=end;
-        
-        // AjouterMonstres(ARAIGNEE);
-        // AjouterMonstres(COCHON);
-        // AjouterMonstres(MONSTREVERT);
-        // AjouterMonstres(RHINO);
 
         ChargerMonstresimg();
     }
@@ -100,7 +94,7 @@ public class MonsterManagement {
         }
         else if(EstFin(m)){
             m.tuer();
-            System.out.println("Une vie de perdue");
+            jouer.enleverUneVie();
         }
         else{
             //cherche une new dir

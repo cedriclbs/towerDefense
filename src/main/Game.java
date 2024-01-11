@@ -1,15 +1,13 @@
 package main;
 
-import java.util.Objects;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import helper.Sauvegarde;
 import management.ImageManagement;
-import object.Image;
 import scenes.Edit;
+import scenes.GameOver;
 import scenes.Jouer;
 import scenes.Menu;
 import scenes.Niveau;
@@ -29,6 +27,7 @@ public class Game extends JFrame implements Runnable{
     private Niveau niveau;
     private Edit edit;
     private ImageManagement imageManagement;
+    private GameOver gameOver;
 
     public Game(){
 
@@ -62,6 +61,7 @@ public class Game extends JFrame implements Runnable{
         menu = new Menu(this,jouer);
         niveau = new Niveau(this);
         edit = new Edit(this);
+        gameOver = new GameOver(this, jouer);
         
     }
 
@@ -84,6 +84,11 @@ public class Game extends JFrame implements Runnable{
         }
     }
     
+    private void start(){
+        gameThread = new Thread(this){};
+        gameThread.start();
+    }
+    
 
     public Render getRender () {
         return this.render;
@@ -104,13 +109,11 @@ public class Game extends JFrame implements Runnable{
         return imageManagement;
     }
     
-
-    private void start(){
-        gameThread = new Thread(this){};
-        gameThread.start();
+    public GameOver getGameOver() {
+        return gameOver;
     }
 
-
+    
     
 
     public static void main(String[] args){
