@@ -14,7 +14,7 @@ public class WaveManagement {
 
     private Jouer jouer;
     private ArrayList<Wave> listeWaves = new ArrayList<>();;
-    private int spawnLimite = 60*2;
+    private int spawnLimite = 60*1;
     private int spawn = spawnLimite;
     private int indexMonstre, indexWave;
     private boolean waveTimer, waveTimerFini;
@@ -95,7 +95,8 @@ public class WaveManagement {
             }
         }  
         if (jouer.getCurrentDifficulty() == Jouer.Difficulty.MARATHON && besoinDePlusDeVagues()) {
-            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(2,2,1,getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),0,0,3,3,0,3,1,1,0,1,1,1,getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(2,2,1,getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndInt(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),0,0,3,3,0,3,1,1,0,1,1,1,getRndInt(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt()))));
+            listeWaves.add(new Wave(new ArrayList<Integer>(Arrays.asList(getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt(),getRndInt(),getRndIntNull(),getRndInt(),getRndIntNull(),getRndInt()))));
         } 
     }
 
