@@ -36,7 +36,7 @@ Il y a deux façons de lancer le jeu;
 
 
     Dans le menu du jeu, vous pouvez paramétrer la map, en cliquant sur la rubrique "Editer", en choisisant le point de départ des monstres et le point d'arrivé, en remplissant la map de chemins, d'espace vert, ou même d'eau.
-    Ensuite, après avoir sauvegarder votre map (qui est automatiqué sauvegardé dans un fichier texte), de retour au menu, vous pouvez choisir la difficulté du jeu dans la rubrique du jeu "Niveau".
+    Ensuite, après avoir sauvegarder votre map (qui est automatiquement sauvegardé dans un fichier texte), de retour au menu, vous pouvez choisir la difficulté du jeu dans la rubrique du jeu "Niveau".
     De plus, un mode marathon est disponible dans cette même rubrique où le nombre de vagues est infinie dans le sens où le jeu se termine uniquement lorsque vous perdez.
     Cliquez sur Jouer pour lancer le jeu ! 
 

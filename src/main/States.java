@@ -5,7 +5,8 @@ public enum States {
     JOUER, 
     MENU, 
     NIVEAU,
-    EDITER;
+    EDITER,
+    GAMEOVER;
     
 
     public static States states = MENU;

@@ -100,7 +100,7 @@ public class MonsterManagement {
         }
         else if(EstFin(m)){
             m.tuer();
-            System.out.println("Une vie de perdue");
+            jouer.enleverUneVie();
         }
         else{
             //cherche une new dir
