@@ -12,11 +12,6 @@ import static helper.Constante.Images.*;
 public class ImageManagement {
 
     public Image HERBE,EAU,ROUTE;
-    /*
-    EAU_COIN_1,EAU_COIN_2,EAU_COIN_3,EAU_COIN_4, EAU_COIN_5,
-    ROUTE_1, ROUTE_2, ROUTE_3, ROUTE_4, ROUTE_5,
-    ILE_1, ILE_2, ILE_3, ILE_4;
-    */
     public BufferedImage Atlas;
     public ArrayList<Image> Images = new ArrayList<>();
     
@@ -32,35 +27,7 @@ public class ImageManagement {
         Images.add(EAU = new Image(getSprite(0, 0),id++,EAU_IMAGE));
         Images.add(ROUTE = new Image(getSprite(8, 0),id++,ROUTE_IMAGE));
 
-        /*
-        Images.add(EAU_COIN_1 = new Image(afficheImage(getImages(0,0,5, 0)),id++,"Eau_COIN_1"));
-        Images.add(EAU_COIN_2 = new Image(afficheImageRot(getImages(0,0,5, 0),90,1),id++,"Eau_COIN_2"));
-        Images.add(EAU_COIN_3 = new Image(afficheImageRot(getImages(0, 0, 6, 0), 90, 1), id++, "Eau_COIN_3"));
-        Images.add(EAU_COIN_4 = new Image(afficheImageRot(getImages(0, 0, 6, 0), 180, 1), id++, "Eau_COIN_4"));
-        Images.add(EAU_COIN_5 = new Image(afficheImageRot(getImages(0, 0, 6, 0), 270, 1), id++, "Eau_COIN_5"));
-       
-        Images.add(ROUTE_1 = new Image(rotateSprite(getSprite(8, 0), 90), id++, "Route_1"));
-        Images.add(ROUTE_2 = new Image(getSprite(7, 0), id++, "Route_2"));
-        Images.add(ROUTE_3 = new Image(rotateSprite(getSprite(7, 0), 90), id++, "Route_3"));
-        Images.add(ROUTE_4 = new Image(rotateSprite(getSprite(7, 0), 180), id++, "Route_4"));
-        Images.add(ROUTE_5 = new Image(rotateSprite(getSprite(7, 0), 270), id++, "Route_5"));
-
-        Images.add(ILE_1 = new Image(afficheImage(getImages(0, 0, 4, 0)), id++, "Ile_1"));
-        Images.add(ILE_2 = new Image(afficheImageRot(getImages(0, 0, 4, 0), 90, 1), id++, "Ile_2"));
-        Images.add(ILE_3 = new Image(afficheImageRot(getImages(0, 0, 4, 0), 180, 1), id++, "Ile_3"));
-        Images.add(ILE_4 = new Image(afficheImageRot(getImages(0, 0, 4, 0), 270, 1), id++, "Ile_4"));
-        */
-
     }
-
-
-    // private BufferedImage[] getImages (int x, int y, int xRotate, int yRotate){
-    //     return new BufferedImage[] {
-    //         getSprite(x,y), getSprite(xRotate, yRotate)
-    //     };
-    // }
-
-
 
     private void ChargementAtlas() {
         Atlas = Sauvegarde.getSpriteAtlas();

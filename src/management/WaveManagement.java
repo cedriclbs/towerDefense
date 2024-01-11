@@ -171,9 +171,4 @@ public class WaveManagement {
     public boolean timerdeWaveOK() {
         return waveTimer;
     }
-
-
-
-
-
 }

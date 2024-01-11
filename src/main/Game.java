@@ -1,14 +1,11 @@
 package main;
 
-import java.util.Objects;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import helper.Sauvegarde;
 import management.ImageManagement;
-import object.Image;
 import scenes.Edit;
 import scenes.GameOver;
 import scenes.Jouer;
