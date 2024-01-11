@@ -113,7 +113,7 @@ public class Jouer extends GameScene implements interfaceScenes {
         waveManagement.update();
 
         OrTick++;
-        if(OrTick %(60*2)== 0){
+        if(OrTick %(60*4)== 0){
             bottomBar.ajouteOr(1);
         }
 

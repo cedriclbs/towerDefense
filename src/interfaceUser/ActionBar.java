@@ -21,7 +21,7 @@ public class ActionBar extends Bar{
     private Hero choosedHero;
     private Hero afficherHero;
     private DecimalFormat decimalFormat;
-    private int or = 100;
+    private int or = 90;
     private boolean montrePrixH;
     private int heroPrixType;
 

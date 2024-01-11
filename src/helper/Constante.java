@@ -55,11 +55,11 @@ public class Constante {
         public static int getDefaultDegats (int typeHeros){
             switch(typeHeros){
                 case CANNON:
-                return 15;
-                case ARCHER:
-                return 5;
-                case MAGE:
                 return 10;
+                case ARCHER:
+                return 2;
+                case MAGE:
+                return 5;
             }
             return 0;
         }
@@ -67,11 +67,11 @@ public class Constante {
         public static float getDefaultPortee (int typeHeros){
             switch(typeHeros){
                 case CANNON:
-                return 100;
+                return 70;
                 case ARCHER:
                 return 100;
                 case MAGE:
-                return 100;
+                return 80;
             }
             return 0;
         }
