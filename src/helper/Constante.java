@@ -57,7 +57,7 @@ public class Constante {
                 case CANNON:
                 return 10;
                 case ARCHER:
-                return 2;
+                return 3;
                 case MAGE:
                 return 5;
             }
@@ -116,9 +116,9 @@ public class Constante {
                 case ARAIGNEE://cochon
                 return 5;
                 case COCHON://araignée
-                return 5;
+                return 3;
                 case MONSTREVERT://Rhino
-                return 25;
+                return 20;
                 case RHINO: //Monstre vert
                 return 10;
             }
@@ -128,13 +128,13 @@ public class Constante {
         public static float getVitesse(int TypeMonstre){
             switch(TypeMonstre){
                 case ARAIGNEE://cochon
-                return 0.65f;
+                return 0.70f;
                 case COCHON://araignée
-                return 0.45f;
+                return 0.50f;
                 case MONSTREVERT://Rhino
-                return 0.35f;
+                return 0.40f;
                 case RHINO: //Monstre vert
-                return 0.2f;
+                return 0.35f;
             }
             return 0;
         }

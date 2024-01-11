@@ -44,7 +44,7 @@ public class ActionBar extends Bar{
         choosedHero = null;
         montrePrixH = false;
         heroPrixType = 0;
-        or = 100;
+        or = 90;
     }
     private void initializeButton(){
         menuButton = new Button("Menu", 2, 642, 100, 30);
