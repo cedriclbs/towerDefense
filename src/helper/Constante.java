@@ -28,6 +28,18 @@ public class Constante {
         public static final int ARCHER = 1;
         public static final int MAGE = 2;
         
+        public static int getHeroPrix(int typeHeros){
+            switch(typeHeros){
+                case CANNON:
+                return 65;
+                case ARCHER:
+                return 30;
+                case MAGE:
+                return 45;
+            }
+            return 0;
+        }
+        
         public static String getNom(int typeHeros){
             switch(typeHeros){
                 case CANNON:
@@ -43,9 +55,9 @@ public class Constante {
         public static int getDefaultDegats (int typeHeros){
             switch(typeHeros){
                 case CANNON:
-                return 30;
+                return 15;
                 case ARCHER:
-                return 1;
+                return 5;
                 case MAGE:
                 return 10;
             }
@@ -67,11 +79,11 @@ public class Constante {
         public static float getDefaultTpsEcoulement (int typeHeros){
             switch(typeHeros){
                 case CANNON:
-                return 10;
+                return 120;
                 case ARCHER:
-                return 10;
+                return 25;
                 case MAGE:
-                return 10;
+                return 40;
             }
             return 0;
         }
@@ -99,6 +111,20 @@ public class Constante {
         public static final int ARAIGNEE = 3; //cochon
         
 
+        public static int getOrMonstres(int TypeMonstre) {
+            switch(TypeMonstre){
+                case ARAIGNEE://cochon
+                return 5;
+                case COCHON://araignée
+                return 5;
+                case MONSTREVERT://Rhino
+                return 25;
+                case RHINO: //Monstre vert
+                return 10;
+            }
+            return 0;
+        }
+
         public static float getVitesse(int TypeMonstre){
             switch(TypeMonstre){
                 case ARAIGNEE://cochon
@@ -116,7 +142,7 @@ public class Constante {
         public static int getDefaultHealth(int typedemonstre) {
             switch(typedemonstre){
                 case ARAIGNEE:
-                return 20;
+                return 60;
                 case COCHON:
                 return 50;
                 case MONSTREVERT:

@@ -1,6 +1,9 @@
 package Monster;
 
 import java.awt.Rectangle;
+
+import management.MonsterManagement;
+
 import static helper.Constante.Direction.*;
 
 public abstract class Monstres {
@@ -13,12 +16,14 @@ public abstract class Monstres {
     protected int lastDirection;
     protected int maxSante;
     protected boolean vivant = true;
-    
-    public Monstres(float x, float y, int id, int typeDeMonstre) {
+    protected MonsterManagement monstreManagement;
+
+    public Monstres(float x, float y, int id, int typeDeMonstre,MonsterManagement monstreManagement) {
         this.x = x;
         this.y = y;
         this.ID = id;
         this.typeDeMonstre = typeDeMonstre;
+        this.monstreManagement = monstreManagement;
         bounds = new Rectangle((int) x, (int) y, 32, 32);
         lastDirection = -1;
         setDefaultHealth();
@@ -102,6 +107,7 @@ public abstract class Monstres {
         this.sante -= damage;
         if(sante <= 0){
             vivant = false;
+            monstreManagement.OrPourJoueur(typeDeMonstre);
         }
     }
 

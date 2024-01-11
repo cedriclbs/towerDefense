@@ -54,16 +54,16 @@ public class MonsterManagement {
         
         switch (type){
             case ARAIGNEE:
-                monstre.add(new Araignee(x, y, 0));
+                monstre.add(new Araignee(x, y, 0,this));
                 break;
             case COCHON : 
-                monstre.add(new Cochon(x, y, 0));
+                monstre.add(new Cochon(x, y, 0,this));
                 break;
             case MONSTREVERT : 
-                monstre.add(new MonstreVert(x, y, 0));
+                monstre.add(new MonstreVert(x, y, 0,this));
                 break;
             case RHINO : 
-                monstre.add(new Rhino(x, y, 0));
+                monstre.add(new Rhino(x, y, 0,this));
                 break;
         }
     }
@@ -229,5 +229,9 @@ public class MonsterManagement {
             }
         }
         return acc;
+    }
+
+    public void OrPourJoueur(int typeDeMonstre) {
+        jouer.OrPourJoueur(typeDeMonstre);
     }
 }

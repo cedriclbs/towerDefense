@@ -21,6 +21,9 @@ public class ActionBar extends Bar{
     private Hero choosedHero;
     private Hero afficherHero;
     private DecimalFormat decimalFormat;
+    private int or = 100;
+    private boolean montrePrixH;
+    private int heroPrixType;
 
     public ActionBar(int x,int y,int width,int height, Jouer jouer){
         super(x, y, width, height);
@@ -39,6 +42,9 @@ public class ActionBar extends Bar{
     public void resetAll(){
         afficherHero = null;
         choosedHero = null;
+        montrePrixH = false;
+        heroPrixType = 0;
+        or = 100;
     }
     private void initializeButton(){
         menuButton = new Button("Menu", 2, 642, 100, 30);
@@ -72,9 +78,45 @@ public class ActionBar extends Bar{
         afficheButton(graphics);
         afficheAfficherHero(graphics);
         afficheInfosWave(graphics);
+        afficheNbOr(graphics);
+        if(montrePrixH){
+            afficherPrixHero(graphics);
+        }
     }
 
-	private void afficheInfosWave(Graphics graphics) {
+	private void afficherPrixHero(Graphics graphics) {
+        graphics.setColor(new Color(61,43,40));
+        graphics.fillRect(280, 650, 120, 50);
+        graphics.setColor(Color.black);
+        graphics.drawRect(280, 650, 120, 50);
+
+        graphics.drawString("" + getPrixHeroNom(), 285, 670);
+        graphics.drawString("Prix : " + getPrixHero() + " Or", 285, 695);
+
+        if(PrixHeroSuperieurOr()){
+            graphics.setColor(new Color(190,25,25));
+            graphics.drawString("Trop cher !", 285, 725);
+        }
+    }
+
+    private boolean PrixHeroSuperieurOr() {
+        return getPrixHero()>or;
+    }
+
+    private int getPrixHero() {
+        return helper.Constante.Heros.getHeroPrix(heroPrixType);
+    }
+
+    private String getPrixHeroNom() {
+        return helper.Constante.Heros.getNom(heroPrixType);
+    }
+
+
+    private void afficheNbOr(Graphics graphics) {
+        graphics.drawString("Or : "+ or, 110, 725);
+    }
+
+    private void afficheInfosWave(Graphics graphics) {
         graphics.setColor(Color.black);
         graphics.setFont(new Font("LucidaSans", Font.BOLD, 20));
         afficheTempsRestantWaves(graphics);
@@ -136,27 +178,36 @@ public class ActionBar extends Bar{
         } else {
             for (Button button : toursButtons){
                 if (button.getRectangle().contains(x,y)){
+                    if(!AssezOR(button.getId())){
+                        return;
+                    }
                     choosedHero = new Hero (0,0,-1,button.getId());
                     jouer.setChoosenHero(choosedHero);
                     return;
                 }
             }
         }
+    }
 
-	}
 
+    private boolean AssezOR(int heroType) {
+        return or >= helper.Constante.Heros.getHeroPrix(heroType);
+    }
 
     public void mouseMoved(int x, int y) {
+        menuButton.setMouseOnIt(false);
+        montrePrixH = false;
         for(Button button : toursButtons){
             button.setMouseOnIt(false);
         }
-		menuButton.setMouseOnIt(false);
         if (menuButton.getRectangle().contains(x, y)){
 			menuButton.setMouseOnIt(true);
         } else {
             for(Button button : toursButtons){
                 if (button.getRectangle().contains(x, y)){
                     button.setMouseOnIt(true);
+                    montrePrixH = true;
+                    heroPrixType = button.getId();
                     return;
                 }
             }
@@ -190,6 +241,14 @@ public class ActionBar extends Bar{
             button.resetBooleans();
         }
 
+    }
+
+    public void payerHero(int heroType) {
+        this.or -= helper.Constante.Heros.getHeroPrix(heroType);
+    }
+
+    public void ajouteOr(int orMonstres) {
+        this.or += orMonstres;
     }
 
 }
