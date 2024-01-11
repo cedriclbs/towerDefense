@@ -14,7 +14,7 @@ public class WaveManagement {
 
     private Jouer jouer;
     private ArrayList<Wave> listeWaves = new ArrayList<>();;
-    private int spawnLimite = 60*1;
+    private int spawnLimite = 60*2;
     private int spawn = spawnLimite;
     private int indexMonstre, indexWave;
     private boolean waveTimer, waveTimerFini;
