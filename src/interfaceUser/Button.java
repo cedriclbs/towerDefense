@@ -53,7 +53,7 @@ public class Button {
 
 
         graphics.setColor(Color.black);
-        graphics.drawImage(Sauvegarde.getFondBut(),x,y,width,height,null);
+        //graphics.drawImage(Sauvegarde.getFondBut(),x,y,width,height,null);
 		graphics.drawRect(x, y, width, height);
 		if (mousePressed) {
 			graphics.drawRect(x + 1, y + 1, width - 2, height - 2);

@@ -88,10 +88,6 @@ public class Jouer extends GameScene implements interfaceScenes {
         afficheInfosWave(graphics);
     }
 
-    
-
-    
-
     private void chargerNivParDefault() {
         niveau = Sauvegarde.getNiveau("Nouveau_niveau");
         ArrayList<Point> nivpoints = Sauvegarde.getNiveauPoint("Nouveau_niveau");
@@ -162,8 +158,6 @@ public class Jouer extends GameScene implements interfaceScenes {
     private void afficheInfosWave(Graphics graphics) {
         
     }
-
-    
 
     private void afficheSpawnMonstre() {
         monsterManagement.afficheSpawnMonstre(waveManagement.getMonstreSuivant());
