@@ -28,6 +28,18 @@ public class Constante {
         public static final int ARCHER = 1;
         public static final int MAGE = 2;
         
+        public static int getHeroPrix(int typeHeros){
+            switch(typeHeros){
+                case CANNON:
+                return 65;
+                case ARCHER:
+                return 30;
+                case MAGE:
+                return 45;
+            }
+            return 0;
+        }
+        
         public static String getNom(int typeHeros){
             switch(typeHeros){
                 case CANNON:
@@ -43,11 +55,11 @@ public class Constante {
         public static int getDefaultDegats (int typeHeros){
             switch(typeHeros){
                 case CANNON:
-                return 30;
-                case ARCHER:
-                return 15;
-                case MAGE:
                 return 10;
+                case ARCHER:
+                return 2;
+                case MAGE:
+                return 5;
             }
             return 0;
         }
@@ -55,11 +67,11 @@ public class Constante {
         public static float getDefaultPortee (int typeHeros){
             switch(typeHeros){
                 case CANNON:
-                return 100;
+                return 70;
                 case ARCHER:
                 return 100;
                 case MAGE:
-                return 100;
+                return 80;
             }
             return 0;
         }
@@ -67,11 +79,11 @@ public class Constante {
         public static float getDefaultTpsEcoulement (int typeHeros){
             switch(typeHeros){
                 case CANNON:
-                return 10;
+                return 120;
                 case ARCHER:
-                return 10;
+                return 25;
                 case MAGE:
-                return 10;
+                return 40;
             }
             return 0;
         }
@@ -93,22 +105,36 @@ public class Constante {
 
     public static class Monstres {
 
-        public static final int MONSTREVERT = 0;
-        public static final int RHINO = 1;
-        public static final int COCHON = 2;
-        public static final int ARAIGNEE = 3;
+        public static final int MONSTREVERT = 0; //rhino
+        public static final int RHINO = 1; // monstrevert
+        public static final int COCHON = 2; // araignée 
+        public static final int ARAIGNEE = 3; //cochon
         
+
+        public static int getOrMonstres(int TypeMonstre) {
+            switch(TypeMonstre){
+                case ARAIGNEE://cochon
+                return 5;
+                case COCHON://araignée
+                return 5;
+                case MONSTREVERT://Rhino
+                return 25;
+                case RHINO: //Monstre vert
+                return 10;
+            }
+            return 0;
+        }
 
         public static float getVitesse(int TypeMonstre){
             switch(TypeMonstre){
-                case ARAIGNEE://rhino
+                case ARAIGNEE://cochon
                 return 0.65f;
-                case COCHON://monstrevert
-                return 0.55f;
-                case MONSTREVERT://araigne
+                case COCHON://araignée
                 return 0.45f;
-                case RHINO: //cochon
-                return 0.3f;
+                case MONSTREVERT://Rhino
+                return 0.35f;
+                case RHINO: //Monstre vert
+                return 0.2f;
             }
             return 0;
         }
@@ -116,7 +142,7 @@ public class Constante {
         public static int getDefaultHealth(int typedemonstre) {
             switch(typedemonstre){
                 case ARAIGNEE:
-                return 20;
+                return 60;
                 case COCHON:
                 return 50;
                 case MONSTREVERT:

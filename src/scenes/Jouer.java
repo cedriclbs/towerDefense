@@ -31,7 +31,12 @@ public class Jouer extends GameScene implements interfaceScenes {
     private Point start, end;
     private Hero choosedHero;
     private WaveManagement waveManagement;
-
+    private Difficulty currentDifficulty = Difficulty.FACILE;
+    private int OrTick;
+    
+    public enum Difficulty {
+        FACILE, MOYEN, DIFFICILE, MARATHON;
+    }
 
     public Jouer(Game game) {
         super(game);
@@ -40,8 +45,35 @@ public class Jouer extends GameScene implements interfaceScenes {
         monsterManagement = new MonsterManagement(this, start, end);
         heroManagement = new HeroManagement(this);
         missileManagement = new MissileManagement(this);
-        waveManagement = new WaveManagement(this);
-;    }
+        waveManagement = new WaveManagement(this,currentDifficulty);
+;   }
+
+    public void updateWaveManagement() {
+        this.waveManagement = new WaveManagement(this, currentDifficulty);
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.currentDifficulty = difficulty;
+    }
+
+    public Difficulty getCurrentDifficulty() {
+        return this.currentDifficulty;
+    }
+
+    public void reset(Difficulty difficulty){
+        chargerNivParDefault();
+
+        xMoved = 0;
+        yMoved = 0;
+        choosedHero = null;
+
+        heroManagement.reset();
+        monsterManagement.reset();
+        missileManagement.reset();
+        waveManagement.reset(difficulty);
+        bottomBar.resetAll();
+        
+    }
 
     @Override
     public void render(Graphics graphics) {
@@ -79,6 +111,11 @@ public class Jouer extends GameScene implements interfaceScenes {
     
     public void update(){
         waveManagement.update();
+
+        OrTick++;
+        if(OrTick %(60*4)== 0){
+            bottomBar.ajouteOr(1);
+        }
 
         if (monstresMorts()){
             if (EstEncoreDeWaves()){
@@ -127,8 +164,6 @@ public class Jouer extends GameScene implements interfaceScenes {
     private void afficheInfosWave(Graphics graphics) {
         
     }
-
-    
 
     private void afficheSpawnMonstre() {
         monsterManagement.afficheSpawnMonstre(waveManagement.getMonstreSuivant());
@@ -192,6 +227,7 @@ public class Jouer extends GameScene implements interfaceScenes {
             if(this.choosedHero!=null && EstSurHerbe(xMoved,yMoved)){
                 if(getHeroAt(xMoved,yMoved)==null){
                     heroManagement.ajouteHero(choosedHero, xMoved, yMoved);
+                    EnleverOr(choosedHero.getHeroType());
                     choosedHero = null;
                 }
             }
@@ -201,6 +237,10 @@ public class Jouer extends GameScene implements interfaceScenes {
             }
         }
 	}
+
+    private void EnleverOr(int heroType) {
+        bottomBar.payerHero(heroType);
+    }
 
     public WaveManagement getWaveManagement() {
         return waveManagement;
@@ -220,6 +260,10 @@ public class Jouer extends GameScene implements interfaceScenes {
         return game.getImageManagement().getImage(niveau[y/32][x/32]).getImageType()==HERBE_IMAGE;
     }
 
+    public void OrPourJoueur(int typeDeMonstre){
+        System.out.println(helper.Constante.Monstres.getOrMonstres(typeDeMonstre));
+        bottomBar.ajouteOr(helper.Constante.Monstres.getOrMonstres(typeDeMonstre));
+    }
 
     @Override
 	public void mouseMoved(int x, int y) {

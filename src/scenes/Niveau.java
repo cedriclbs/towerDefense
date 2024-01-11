@@ -8,11 +8,11 @@ import main.Game;
 import static main.States.*;
 
 
-public class Parametres extends GameScene implements interfaceScenes {
+public class Niveau extends GameScene implements interfaceScenes {
 
     private Button menuButton;
 
-    public Parametres(Game game) {
+    public Niveau(Game game) {
         super(game);
         menuButton = new Button("Menu", 2, 2, 100, 30);
     }

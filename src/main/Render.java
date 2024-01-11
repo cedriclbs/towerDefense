@@ -24,7 +24,7 @@ public class Render {
                 game.getMenu().render(graphics);
             break;
 
-            case PARAMETRES:
+            case NIVEAU:
                 game.getParametres().render(graphics);
             break;
             

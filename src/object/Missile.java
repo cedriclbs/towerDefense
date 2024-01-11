@@ -6,14 +6,15 @@ public class Missile {
 
 	private Point2D.Float pos;
 	private int id, missileType, degats;
-	private float vitesseX, vitesseY;
+	private float vitesseX, vitesseY, rotation;
 	private boolean active = true;
 
-	public Missile(float x, float y, float vitesseX, float vitesseY,int degats, int id, int missileType) {
+	public Missile(float x, float y, float vitesseX, float vitesseY,int degats,float rotation, int id, int missileType) {
 		pos = new Point2D.Float(x, y);
 		this.vitesseX = vitesseX;
 		this.vitesseY = vitesseY;
         this.degats = degats;
+		this.rotation = rotation;
 		this.id = id;
 		this.missileType = missileType;
 	}
@@ -50,5 +51,9 @@ public class Missile {
     public int getDegats() {
         return degats;
     }
+
+	public float getRotation(){
+		return rotation;
+	}
 
 }

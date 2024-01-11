@@ -51,6 +51,7 @@ public class Button {
 
 
         graphics.setColor(Color.black);
+        //graphics.drawImage(Sauvegarde.getFondBut(),x,y,width,height,null);
 		graphics.drawRect(x, y, width, height);
 		if (mousePressed) {
 			graphics.drawRect(x + 1, y + 1, width - 2, height - 2);
@@ -61,6 +62,7 @@ public class Button {
 
         int widthText = graphics.getFontMetrics().stringWidth(buttonName);
         int heightText = graphics.getFontMetrics().getHeight();
+        
         graphics.drawString(buttonName, x - widthText/2 + width/2, heightText/2 + height/2 + y);
 
     }
